@@ -7,6 +7,8 @@
 #include <time.h>
 #include <math.h>
 
+
+ // OOOOOCCCEEEEEEEAAAAAAANNNNNNNN??????????????????????????????????????????
 //constants
 const char * ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const char * BASE64KEY = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -394,3 +396,67 @@ char * decode64Bit (char * stringToDecode) {
     free(binary);
     return decoded;
 }
+
+// KKKKKKKKKKKKAAAAAAAAAAAATTTTTTTTTTTTTTTTTEEEEEEEEEE%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+// THIS ONE IS FOR CEASER CIPHER ENCRYPTION
+#include <stdio.h>
+#include <ctype.h>
+
+void encrypt(char message[], int key) {
+    for (int i = 0; message[i] != '\0'; ++i) {
+        if (isalpha(message[i])) {
+            char base = isupper(message[i]) ? 'A' : 'a';
+            message[i] = (message[i] - base + key) % 26 + base;
+        }
+    }
+}
+
+
+// THIS ONE IS FOR CEASER CIPHER DECRYPTION
+#include <stdio.h>
+#include <ctype.h>
+
+void decode(char message[], int key) {
+    for (int i = 0; message[i] != '\0'; ++i) {
+        if (isalpha(message[i])) {
+            char base = isupper(message[i]) ? 'A' : 'a';
+            message[i] = (message[i] - base - key + 26) % 26 + base;
+        }
+    }
+}
+
+// THIS ONE IS FOR BOOK ENCRYPTION
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define MAX_BOOK_TITLE 50
+#define ALPHABET_SIZE 26
+
+int findPositionInBook(FILE *file, char targetChar, int *letterPositions) {
+    int position = 0;
+    char word[MAX_BOOK_TITLE];
+
+    while (fscanf(file, "%s", word) == 1) {
+        position++;
+
+        char firstChar = toupper(word[0]);
+
+        if (firstChar == targetChar && letterPositions[firstChar - 'A'] < position) {
+            return position;
+        }
+    }
+
+    return -1;
+}
+
+void resetFilePosition(FILE *file) {
+    fseek(file, 0, SEEK_SET);
+}
+
+// THIS ONE IS ENCRYPTION USING PLAYFAIR
+
+
+
+
