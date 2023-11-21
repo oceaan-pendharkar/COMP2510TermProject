@@ -1,0 +1,3 @@
+/Users/oceaanpendharkar/CLionProjects/TermProjectGroup8/cmake-build-debug/CMakeFiles/TermProjectGroup8.dir
+/Users/oceaanpendharkar/CLionProjects/TermProjectGroup8/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/oceaanpendharkar/CLionProjects/TermProjectGroup8/cmake-build-debug/CMakeFiles/rebuild_cache.dir
