@@ -394,3 +394,93 @@ char * decode64Bit (char * stringToDecode) {
     free(binary);
     return decoded;
 }
+/////////////////////////Viv
+
+void railRoadCipherEncryption(char* plainText, int rails) {
+    int len = strlen(plainText);
+    char fence[len][rails];
+
+    for (int i = 0; i < len; i++) {
+        for (int j = 0; j < rails; j++) {
+            fence[i][j] = 0;
+        }
+    }
+
+    int rail = 0;
+    int direction = 1;
+
+    for (int i = 0; i < len; i++) {
+        fence[i][rail] = plainText[i];
+        rail += direction;
+
+        if (rail == 0 || rail == rails - 1) {
+            direction = -direction;
+        }
+    }
+
+    int index = 0;
+    for (int i = 0; i < rails; i++) {
+        for (int j = 0; j < len; j++) {
+            if (fence[j][i] != 0) {
+                plainText[index++] = fence[j][i];
+            }
+        }
+    }
+}
+
+void railRoadCipherDecryption(char* encoded_message, int rails) {
+    int len = strlen(encoded_message);
+    char fence[len][rails];
+
+    for (int i = 0; i < len; i++) {
+        for (int j = 0; j < rails; j++) {
+            fence[i][j] = 0;
+        }
+    }
+
+    int rail = 0;
+    int direction = 1;
+
+    // Fill the fence with placeholders
+    for (int i = 0; i < len; i++) {
+        fence[i][rail] = 1;  // Using 1 as a placeholder for filled cells
+        rail += direction;
+
+        if (rail == 0 || rail == rails - 1) {
+            direction = -direction;
+        }
+    }
+
+    // Fill the fence with the encoded message
+    int index = 0;
+    for (int i = 0; i < rails; i++) {
+        for (int j = 0; j < len; j++) {
+            if (fence[j][i] == 1) {
+                fence[j][i] = encoded_message[index++];
+            }
+        }
+    }
+
+
+    rail = 0;
+    direction = 1;
+    for (int i = 0; i < len; i++) {
+        encoded_message[i] = fence[i][rail];
+        rail += direction;
+
+        if (rail == 0 || rail == rails - 1) {
+            direction = -direction;
+        }
+    }
+}
+
+void simpleXORCipher(char* message, const char* key) {
+    int len = strlen(message);
+    int keyLen = strlen(key);
+
+    for (int i = 0; i < len; i++) {
+        message[i] = message[i] ^ key[i % keyLen];
+    }
+}
+
+
