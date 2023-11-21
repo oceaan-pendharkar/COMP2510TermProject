@@ -27,6 +27,41 @@ int findIndex(char c, const char * string) {
     return -1;
 }
 
+// 3 Atbash Ciper
+void atbashCipher(char *text) {
+    for (int i = 0; text[i] != '\0'; i++) {
+        // Check if the current character is an alphabet letter
+        if (isalpha(text[i])) {
+            // Determine if the letter is uppercase or lowercase
+            char case_diff = isupper(text[i]) ? 'A' : 'a';
+
+            // Apply Atbash cipher to the current letter
+            text[i] = 'Z' - (text[i] - case_diff);
+        }
+    }
+}
+
+//4 Binary Enconding
+char *textToBinary(const char *text) {
+    int len = strlen(text);
+    char *binaryResult = (char *)malloc((len * 8 + 1) * sizeof(char));
+    if (binaryResult == NULL) {
+        fprintf(stderr, "Memory allocation error\n");
+    }
+    int index = 0;
+    for (int i = 0; i < len; i++) {
+        char currentChar = text[i];
+        // Convert each character to its binary representation
+        for (int j = 7; j >= 0; j--) {
+            binaryResult[index++] = ((currentChar >> j) & 1) + '0';
+        }
+        // Add spaces between binary representations of different characters
+        binaryResult[index++] = ' ';
+    }
+    binaryResult[index] = '\0';
+    return binaryResult;
+}
+
 //5.
 //gets an array of the number of times each character appears in a key
 int * getCombinationsArray(char * string, char * key) {
@@ -65,6 +100,16 @@ int * getIndices(char c, char * string) {
     }
     indices[index] = -1;
     return indices;
+}
+
+// 7 ROT13
+void rot13Cipher(char *text) {
+    for (int i = 0; text[i] != '\0'; i++) {
+        if (isalpha(text[i])) {
+            char case_diff = isupper(text[i]) ? 'A' : 'a';
+            text[i] = (text[i] - case_diff + 13) % 26 + case_diff;
+        }
+    }
 }
 
 //7.

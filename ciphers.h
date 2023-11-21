@@ -9,5 +9,8 @@ char * simpleSubstitutionEncode (char * stringToEncode);
 void railRoadCipherEncryption(char* plainText, int rails);
 void railRoadCipherDecryption(char* encoded_message, int rails);
 void simpleXORCipher(char* message, const char* key);
-
+// Michael
+void atbashCipher(char *text);
+void rot13Cipher(char *text);
+char *textToBinary(const char *text);
 
