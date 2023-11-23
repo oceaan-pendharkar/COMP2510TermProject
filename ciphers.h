@@ -16,9 +16,8 @@ void atbashCipher(char *text);
 void rot13Cipher(char *text);
 char *textToBinary(const char *text);
 // Charlie's functions
-int getShift(const char *key, int position, bool encrypt);
 void vigenereEncrypt(char *message, const char *key, bool encrypt);
 void textToMorse(const char *text);
 void morseToText(const char *code);
-
-
+void fractionatedMorse(const char *text);
+void unfractionatedMorse(const char *code);

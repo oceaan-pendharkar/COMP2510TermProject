@@ -75,7 +75,16 @@ int main() {
 //
 //    printf("Decoded Morse: ");
 //    morseToText(inputCode);
-
-
+////Fractionated Morse
+//    const char *inputText = "Hello World";
+//    char inputCode[] = "agtcdhotqodtcjt";
+//
+//    printf("Original Text: %s\n", inputText);
+//
+//    printf("Morse Code: ");
+//    fractionatedMorse(inputText);
+//
+//    printf("\nDeciphered Text: ");
+//    unfractionatedMorse(inputCode);
 
 }

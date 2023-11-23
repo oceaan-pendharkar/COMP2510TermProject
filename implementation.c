@@ -626,5 +626,104 @@ void morseToText(const char *code) {
     printf("\n");
 }
 //Fractionated Morse Code
+void fractionatedMorse(const char *text) {
+    const char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+                                "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                                "---", ".--.", "--.-", ".-.", "...", "-",
+                                "..-", "...-", ".--", "-..-", "-.--", "--.."};
 
+    const char *fractionatedCodes[] = {"...", "..-", "..|", ".-.", ".--", ".-|", ".|.",
+                                       ".|-", ".||", "-..", "-.-", "-.|", "--.", "---",
+                                       "--|", "-|.", "-|-", "-||", "|..", "|.-",
+                                       "|.|", "|-.", "|--", "|-|", "||.", "||-"};
+
+
+    char morseText[500] = "";
+    char fractionatedText[100] = "";
+
+    for (int i = 0; text[i] != '\0'; i++) {
+        char currentChar = tolower(text[i]);
+
+        if (isalpha(currentChar)) {
+            strcat(morseText, morseCodes[currentChar - 'a']);
+            strcat(morseText, "|");
+        } else if (isspace(currentChar)) {
+            strcat(morseText, "|");
+        }
+    }
+    strcat(morseText, "\0");
+    printf("\n%s\n", morseText);
+
+    if (strlen(morseText) % 3 == 2) {
+        strcat(morseText, ".");
+    } else if (strlen(morseText) % 3 == 1) {
+        strcat(morseText, ".-");
+    }
+
+
+    int fractionatedIndex = 0;
+    for (int i = 0; i < strlen(morseText); i += 3) {
+        char fractionatedCharacter[4];
+        for (int k = 0; k < 3; k++) {
+            fractionatedCharacter[k] = morseText[i + k];
+        }
+        fractionatedCharacter[3] = '\0';
+        for (int j = 0; j < sizeof(fractionatedCodes) / sizeof(fractionatedCodes[0]); j++) {
+            if (strcmp(fractionatedCharacter, fractionatedCodes[j]) == 0) {
+                fractionatedText[fractionatedIndex] = 'a' + j;
+                fractionatedIndex++;
+            }
+        }
+    }
+
+    printf("%s", fractionatedText);
+}
+
+void unfractionatedMorse(const char *code) {
+    const char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+                                "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                                "---", ".--.", "--.-", ".-.", "...", "-",
+                                "..-", "...-", ".--", "-..-", "-.--", "--.."};
+
+    const char *fractionatedCodes[] = {"...", "..-", "..|", ".-.", ".--", ".-|", ".|.",
+                                       ".|-", ".||", "-..", "-.-", "-.|", "--.", "---",
+                                       "--|", "-|.", "-|-", "-||", "|..", "|.-",
+                                       "|.|", "|-.", "|--", "|-|", "||.", "||-"};
+
+
+    char morseCodeText[100] = "";
+    char fractionatedCodeText[500] = "";
+
+    for (int i = 0; code[i] != '\0'; i++) {
+        int fractionatedMorse = (int) code[i];
+        strcat(fractionatedCodeText, fractionatedCodes[fractionatedMorse - 'a']);
+    }
+
+    for (int i = 0; i < strlen(fractionatedCodeText); i++) {
+        char currentCodeLetter[5];
+        int j = 0;
+        while (fractionatedCodeText[i] != '|' && fractionatedCodeText[i] != '\0') {
+            currentCodeLetter[j++] = fractionatedCodeText[i++];
+        }
+        currentCodeLetter[j] = '\0';
+        if (fractionatedCodeText[i] == '\0') {
+            i--;
+        }
+
+        for (int k = 0; k < sizeof(morseCodes) / sizeof(morseCodes[0]); k++) {
+            if (strcmp(currentCodeLetter, morseCodes[k]) == 0) {
+                char decipheredChar = k + 'a';
+                morseCodeText[strlen(morseCodeText)] = decipheredChar;
+                break;
+            }
+        }
+
+        if (fractionatedCodeText[i] == '|' && fractionatedCodeText[i + 1] == '|') {
+            strcat(morseCodeText, " ");
+            i++;
+        }
+    }
+
+    printf("%s", morseCodeText);
+}
 
