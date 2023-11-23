@@ -529,6 +529,8 @@ void simpleXORCipher(char* message, const char* key) {
 }
 
 // Charlie's ---------------------------------------------------------------
+
+//Vigenere Cipher
 int getShift(const char *key, int position, bool encrypt) {
     int keyLength = strlen(key);
 
@@ -553,5 +555,76 @@ void vigenereEncrypt(char *message, const char *key, bool encrypt) {
         }
     }
 }
+
+//Morse Code
+void textToMorse(const char *text) {
+    const char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+                                "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                                "---", ".--.", "--.-", ".-.", "...", "-",
+                                "..-", "...-", ".--", "-..-", "-.--", "--..",
+                                ".----", "..---", "...--", "....-", ".....",
+                                "-....","--...", "---..", "----.", "-----" };
+
+
+    for (int i = 0; text[i] != '\0'; i++) {
+        char currentChar = tolower(text[i]);
+
+        if (isalpha(currentChar)) {
+            printf("%s ", morseCodes[currentChar - 'a']);
+        } else if (isdigit(currentChar)) {
+            printf("%s ", morseCodes[currentChar - '0' + 25]);
+        } else {
+            printf("%c ", currentChar);
+        }
+    }
+    printf("\n");
+}
+
+void morseToText(const char *code) {
+    const char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+                                "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                                "---", ".--.", "--.-", ".-.", "...", "-",
+                                "..-", "...-", ".--", "-..-", "-.--", "--..",
+                                "-----", ".----", "..---", "...--", "....-", ".....",
+                                "-....","--...", "---..", "----." };
+
+    for (int i = 0; code[i] != '\0'; i++) {
+        if (code[i] == ' ') {
+            printf(" ");
+            continue;
+        }
+
+        char currentCodeLetter[6];
+        int j = 0;
+        while (code[i] != ' ' && code[i] != '\0') {
+            currentCodeLetter[j++] = code[i++];
+        }
+        currentCodeLetter[j] = '\0';
+        if (code[i] == '\0') {
+            i--;
+        }
+
+        int currentMorseIndex = -1;
+        for (int k = 0; k < sizeof(morseCodes) / sizeof(morseCodes[0]); k++) {
+            if (strcmp(currentCodeLetter, morseCodes[k]) == 0) {
+                currentMorseIndex = k;
+            }
+        }
+
+        if (currentMorseIndex == -1) {
+            printf("%c", code[i-1]);
+            continue;
+        }
+
+        if (currentMorseIndex < 26) {
+            printf("%c", currentMorseIndex + 'a');
+        } else {
+            printf("%c", currentMorseIndex + '0' - 26);
+        }
+
+    }
+    printf("\n");
+}
+//Fractionated Morse Code
 
 

@@ -18,5 +18,7 @@ char *textToBinary(const char *text);
 // Charlie's functions
 int getShift(const char *key, int position, bool encrypt);
 void vigenereEncrypt(char *message, const char *key, bool encrypt);
+void textToMorse(const char *text);
+void morseToText(const char *code);
 
 

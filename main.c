@@ -64,5 +64,18 @@ int main() {
 //    }
 //
 //    printf("Encrypted Message: %s\n", message);
+////Morse
+//    const char *inputText = "Hello, World! 123";
+//    char inputCode[] = ".... . .-.. .-.. --- ,   .-- --- .-. .-.. -.. !   .---- ..--- ...--";
+//
+//    printf("Original Text: %s\n", inputText);
+//
+//    printf("Morse Code: ");
+//    textToMorse(inputText);
+//
+//    printf("Decoded Morse: ");
+//    morseToText(inputCode);
+
+
 
 }
