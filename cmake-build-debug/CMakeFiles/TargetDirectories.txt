@@ -1,3 +1,3 @@
-/Users/yueyu/Desktop/2510Project/cmake-build-debug/CMakeFiles/TermProjectGroup8.dir
-/Users/yueyu/Desktop/2510Project/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/yueyu/Desktop/2510Project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/17788/CLionProjects/untitled/CProject/cmake-build-debug/CMakeFiles/TermProjectGroup8.dir
+C:/Users/17788/CLionProjects/untitled/CProject/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/17788/CLionProjects/untitled/CProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir

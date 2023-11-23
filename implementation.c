@@ -528,4 +528,30 @@ void simpleXORCipher(char* message, const char* key) {
     }
 }
 
+// Charlie's ---------------------------------------------------------------
+int getShift(const char *key, int position, bool encrypt) {
+    int keyLength = strlen(key);
+
+    if (encrypt) {
+        return tolower(key[position % keyLength]) - 'a';
+    } else {
+        return -(tolower(key[position % keyLength]) - 'a') + 26;
+    }
+}
+
+void vigenereEncrypt(char *message, const char *key, bool encrypt) {
+
+    for (int i = 0; i < strlen(message); i++) {
+        if (isalpha(message[i])) {
+            int shift = getShift(key, i, encrypt);
+
+            if (isupper(message[i])) {
+                message[i] = (message[i] - 'A' + shift) % 26 + 'A';
+            } else {
+                message[i] = (message[i] - 'a' + shift) % 26 + 'a';
+            }
+        }
+    }
+}
+
 

@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 //Oceaan's encoding and decoding functions
 char * decode64Bit (char * stringToDecode);
 char * encode64Bit (char * stringToEncode);
@@ -13,4 +15,8 @@ void simpleXORCipher(char* message, const char* key);
 void atbashCipher(char *text);
 void rot13Cipher(char *text);
 char *textToBinary(const char *text);
+// Charlie's functions
+int getShift(const char *key, int position, bool encrypt);
+void vigenereEncrypt(char *message, const char *key, bool encrypt);
+
 
