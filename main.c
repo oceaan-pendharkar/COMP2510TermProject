@@ -5,9 +5,28 @@
 #include <stdlib.h>
 
 int main() {
+    //Oceaan's tests
+//    char wordToEncode[] = "My name is Bob!";
+//    char * encryptedWord = simpleSubstitutionEncode(wordToEncode);
+//    printf("Encrypted word: %s\n", encryptedWord);
+//    printf("Original word: %s\n", wordToEncode);
+//    char * decryptedWord = simpleSubstitutionDecode(encryptedWord);
+//    printf("Decrypted word: %s\n\n", decryptedWord);
+//
+//    char * encryptedWord2 = complexSubstitutionEncode(wordToEncode);
+//    printf("Encrypted word with random key: %s\n", encryptedWord2);
+//    printf("%lu %lu\n", strlen(encryptedWord2), strlen(wordToEncode));
+//
+//    char wordToDecode[] = "i4 6vi9 63 }3}!";
+//    char * key = "v}Iw9=7%6A\"li63ku]3ysZEV42";
+//    complexSubstitutionDecode(wordToDecode, key);
+//
 //    char * encodedString = encode64Bit("green apple");
-//    printf("%s", encodedString);
-//    return 0;
+//    printf("encoded string: %s\n", encodedString);
+//    char * decodedString = decode64Bit("Z3JlZW4gYXBwbGU=");
+//    printf("decoded string: %s\n", decodedString);
+//    free(encodedString);
+//    free(decodedString);
 
 //    char text[100];
 //    int rails;
@@ -16,6 +35,8 @@ int main() {
 //
 //    text[strcspn(text, "\n")] = '\0';
 //
+
+
 //    printf("Enter the number of rails:");
 //    scanf("%d", &rails);
 //
