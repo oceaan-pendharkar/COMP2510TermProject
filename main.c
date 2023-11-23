@@ -36,6 +36,43 @@ int main() {
 //    text[strcspn(text, "\n")] = '\0';
 //
 
+    // Test Atbash
+//    char input[100];
+//    printf("Enter text for Atbash cipher: ");
+//    fgets(input, sizeof(input), stdin);
+//    atbashCipher(input);
+//    printf("Atbash cipher: %s\n", input);
+
+    // Test ROT13
+//    char ROT[100];
+//    printf("Enter text for ROT13 cipher: ");
+//    fgets(ROT, sizeof(ROT), stdin);
+//    rot13Cipher(ROT);
+//    printf("ROT13: %s\n", ROT);
+
+    // Test Binary
+//    char binary[100];
+//    printf("Enter text for binary encoding: ");
+//    fgets(binary, sizeof(binary), stdin);
+//    char *binaryEncode = textToBinary(binary);
+//    printf("Binary Encoding: %s\n", binaryEncode);
+//    free(binaryEncode);
+
+
+      // Testing Keyword Cipher
+//    const char* keyword = "KEYWORD";
+//    const char* plaintext = "HELLO WORLD";
+//
+//    char* encrypted_text = encrypt(plaintext, keyword);
+//    char* decrypted_text = decrypt(encrypted_text, keyword);
+//
+//    printf("Plaintext: %s\n", plaintext);
+//    printf("Encrypted text: %s\n", encrypted_text);
+//    printf("Decrypted text: %s\n", decrypted_text);
+//
+//    free(encrypted_text);
+//    free(decrypted_text);
+
 
 //    printf("Enter the number of rails:");
 //    scanf("%d", &rails);

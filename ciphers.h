@@ -15,6 +15,10 @@ void simpleXORCipher(char* message, const char* key);
 void atbashCipher(char *text);
 void rot13Cipher(char *text);
 char *textToBinary(const char *text);
+char* generate_cipher_alphabet(const char* keyword);
+
+char* encrypt(const char* plaintext, const char* keyword);
+char* decrypt(const char* ciphertext, const char* keyword);
 // Charlie's functions
 void vigenereEncrypt(char *message, const char *key, bool encrypt);
 void textToMorse(const char *text);

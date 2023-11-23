@@ -8,8 +8,10 @@
 #include <math.h>
 
 //constants
+#define ALPHABET_SIZE 26
 const char * ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const char * BASE64KEY = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
 
 //helper functions
 //1.
@@ -161,6 +163,60 @@ char * getBinaryString (char * stringToEncode) {
     }
     return binary;
 }
+
+//9. Keyword Cipher
+char* generate_cipher_alphabet(const char* keyword) {
+    char* cipher_alphabet = (char*)malloc(ALPHABET_SIZE + 1);
+    int keyword_length = strlen(keyword);
+    int i, j;
+    for (i = 0; i < keyword_length; ++i) {
+        cipher_alphabet[i] = toupper(keyword[i]);
+    }
+    for (i = keyword_length, j = 'A'; i < ALPHABET_SIZE; ++i, ++j) {
+        while (strchr(keyword, j) != NULL) {
+            ++j;
+        }
+        cipher_alphabet[i] = j;
+    }
+    cipher_alphabet[ALPHABET_SIZE] = '\0';
+    return cipher_alphabet;
+}
+
+char* encrypt(const char* plaintext, const char* keyword) {
+    char* cipher_alphabet = generate_cipher_alphabet(keyword);
+    int text_length = strlen(plaintext);
+    char* ciphertext = (char*)malloc(text_length + 1);
+    for (int i = 0; i < text_length; ++i) {
+        if (isalpha(plaintext[i])) {
+            int index = toupper(plaintext[i]) - 'A';
+            ciphertext[i] = cipher_alphabet[index];
+        } else {
+            ciphertext[i] = plaintext[i];
+        }
+    }
+    ciphertext[text_length] = '\0';
+    free(cipher_alphabet);
+    return ciphertext;
+}
+
+char* decrypt(const char* ciphertext, const char* keyword) {
+    char* cipher_alphabet = generate_cipher_alphabet(keyword);
+    int text_length = strlen(ciphertext);
+    char* plaintext = (char*)malloc(text_length + 1);
+
+    for (int i = 0; i < text_length; ++i) {
+        if (isalpha(ciphertext[i])) {
+            char* index = strchr(cipher_alphabet, toupper(ciphertext[i]));
+            plaintext[i] = 'A' + (int)(index - cipher_alphabet);
+        } else {
+            plaintext[i] = ciphertext[i];
+        }
+    }
+    plaintext[text_length] = '\0';
+    free(cipher_alphabet);
+    return plaintext;
+}
+
 
 //10.
 //Gives the number of equals signs needed at the end of a base64 encoded string.
