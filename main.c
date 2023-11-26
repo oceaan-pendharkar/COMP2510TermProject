@@ -145,4 +145,29 @@ int main() {
 //    printf("\nDeciphered Text: ");
 //    unfractionatedMorse(inputCode);
 
+//    char message[100];
+//    int key;
+//
+//
+//    printf("Enter the message to encrypt: ");
+//    fgets(message, sizeof(message), stdin);
+//    message[strcspn(message, "\n")] = '\0';
+//
+//    printf("Enter the key: ");
+//    scanf("%d", &key);
+//
+//    skytaleEncrypt(message, key);
+
+//    char message[100];
+//    int key;
+//
+//    printf("Enter the encrypted message: ");
+//    fgets(message, sizeof(message), stdin);
+//    message[strcspn(message, "\n")] = '\0';
+//
+//    printf("Enter the key: ");
+//    scanf("%d", &key);
+//
+//    skytaleDecrypt(message, key);
+
 }

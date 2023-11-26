@@ -783,3 +783,61 @@ void unfractionatedMorse(const char *code) {
     printf("%s", morseCodeText);
 }
 
+// Skytale
+
+void skytaleEncrypt(char *message, int key) {
+    int messageLength = strlen(message);
+    int numRows = (messageLength + key - 1) / key;
+
+    char matrix[numRows][key];
+
+    int index = 0;
+    for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j < key; j++) {
+            if (index < messageLength) {
+                matrix[i][j] = message[index++];
+            } else {
+                matrix[i][j] = ' ';
+            }
+        }
+    }
+
+    printf("Encrypted Message: ");
+    for (int i = 0; i < key; i++) {
+        for (int j = 0; j < numRows; j++) {
+            printf("%c", matrix[j][i]);
+        }
+    }
+    printf("\n");
+}
+
+void skytaleDecrypt(char *message, int key) {
+    int messageLength = strlen(message);
+    int numRows = (messageLength + key - 1) / key;
+
+    char matrix[numRows][key];
+
+    for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j < key; j++) {
+            matrix[i][j] = ' ';
+        }
+    }
+
+    int index = 0;
+    for (int i = 0; i < key; i++) {
+        for (int j = 0; j < numRows; j++) {
+            matrix[j][i] = message[index++];
+        }
+    }
+
+    // Print the decrypted message
+    printf("Decrypted Message: ");
+    for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j < key; j++) {
+            printf("%c", matrix[i][j]);
+        }
+    }
+    printf("\n");
+}
+
+

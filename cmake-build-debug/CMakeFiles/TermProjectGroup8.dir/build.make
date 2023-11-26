@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Program Files\CLion 2023.2.1\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.2.1\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "D:\Program Files\CLion 2023.2.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2023.2.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\17788\CLionProjects\untitled\CProject
+CMAKE_SOURCE_DIR = C:\Users\vivia\CLionProjects\COMP2510TermProject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\17788\CLionProjects\untitled\CProject\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\vivia\CLionProjects\COMP2510TermProject\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/TermProjectGroup8.dir/depend.make
@@ -69,32 +69,32 @@ include CMakeFiles/TermProjectGroup8.dir/progress.make
 include CMakeFiles/TermProjectGroup8.dir/flags.make
 
 CMakeFiles/TermProjectGroup8.dir/main.c.obj: CMakeFiles/TermProjectGroup8.dir/flags.make
-CMakeFiles/TermProjectGroup8.dir/main.c.obj: C:/Users/17788/CLionProjects/untitled/CProject/main.c
+CMakeFiles/TermProjectGroup8.dir/main.c.obj: C:/Users/vivia/CLionProjects/COMP2510TermProject/main.c
 CMakeFiles/TermProjectGroup8.dir/main.c.obj: CMakeFiles/TermProjectGroup8.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\17788\CLionProjects\untitled\CProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/TermProjectGroup8.dir/main.c.obj"
-	"D:\Program Files\CLion 2023.2.1\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/TermProjectGroup8.dir/main.c.obj -MF CMakeFiles\TermProjectGroup8.dir\main.c.obj.d -o CMakeFiles\TermProjectGroup8.dir\main.c.obj -c C:\Users\17788\CLionProjects\untitled\CProject\main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\vivia\CLionProjects\COMP2510TermProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/TermProjectGroup8.dir/main.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/TermProjectGroup8.dir/main.c.obj -MF CMakeFiles\TermProjectGroup8.dir\main.c.obj.d -o CMakeFiles\TermProjectGroup8.dir\main.c.obj -c C:\Users\vivia\CLionProjects\COMP2510TermProject\main.c
 
 CMakeFiles/TermProjectGroup8.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/TermProjectGroup8.dir/main.c.i"
-	"D:\Program Files\CLion 2023.2.1\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\17788\CLionProjects\untitled\CProject\main.c > CMakeFiles\TermProjectGroup8.dir\main.c.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\vivia\CLionProjects\COMP2510TermProject\main.c > CMakeFiles\TermProjectGroup8.dir\main.c.i
 
 CMakeFiles/TermProjectGroup8.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/TermProjectGroup8.dir/main.c.s"
-	"D:\Program Files\CLion 2023.2.1\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\17788\CLionProjects\untitled\CProject\main.c -o CMakeFiles\TermProjectGroup8.dir\main.c.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\vivia\CLionProjects\COMP2510TermProject\main.c -o CMakeFiles\TermProjectGroup8.dir\main.c.s
 
 CMakeFiles/TermProjectGroup8.dir/implementation.c.obj: CMakeFiles/TermProjectGroup8.dir/flags.make
-CMakeFiles/TermProjectGroup8.dir/implementation.c.obj: C:/Users/17788/CLionProjects/untitled/CProject/implementation.c
+CMakeFiles/TermProjectGroup8.dir/implementation.c.obj: C:/Users/vivia/CLionProjects/COMP2510TermProject/implementation.c
 CMakeFiles/TermProjectGroup8.dir/implementation.c.obj: CMakeFiles/TermProjectGroup8.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\17788\CLionProjects\untitled\CProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/TermProjectGroup8.dir/implementation.c.obj"
-	"D:\Program Files\CLion 2023.2.1\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/TermProjectGroup8.dir/implementation.c.obj -MF CMakeFiles\TermProjectGroup8.dir\implementation.c.obj.d -o CMakeFiles\TermProjectGroup8.dir\implementation.c.obj -c C:\Users\17788\CLionProjects\untitled\CProject\implementation.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\vivia\CLionProjects\COMP2510TermProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/TermProjectGroup8.dir/implementation.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/TermProjectGroup8.dir/implementation.c.obj -MF CMakeFiles\TermProjectGroup8.dir\implementation.c.obj.d -o CMakeFiles\TermProjectGroup8.dir\implementation.c.obj -c C:\Users\vivia\CLionProjects\COMP2510TermProject\implementation.c
 
 CMakeFiles/TermProjectGroup8.dir/implementation.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/TermProjectGroup8.dir/implementation.c.i"
-	"D:\Program Files\CLion 2023.2.1\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\17788\CLionProjects\untitled\CProject\implementation.c > CMakeFiles\TermProjectGroup8.dir\implementation.c.i
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\vivia\CLionProjects\COMP2510TermProject\implementation.c > CMakeFiles\TermProjectGroup8.dir\implementation.c.i
 
 CMakeFiles/TermProjectGroup8.dir/implementation.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/TermProjectGroup8.dir/implementation.c.s"
-	"D:\Program Files\CLion 2023.2.1\bin\mingw\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\17788\CLionProjects\untitled\CProject\implementation.c -o CMakeFiles\TermProjectGroup8.dir\implementation.c.s
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\vivia\CLionProjects\COMP2510TermProject\implementation.c -o CMakeFiles\TermProjectGroup8.dir\implementation.c.s
 
 # Object files for target TermProjectGroup8
 TermProjectGroup8_OBJECTS = \
@@ -110,7 +110,7 @@ TermProjectGroup8.exe: CMakeFiles/TermProjectGroup8.dir/build.make
 TermProjectGroup8.exe: CMakeFiles/TermProjectGroup8.dir/linkLibs.rsp
 TermProjectGroup8.exe: CMakeFiles/TermProjectGroup8.dir/objects1.rsp
 TermProjectGroup8.exe: CMakeFiles/TermProjectGroup8.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\17788\CLionProjects\untitled\CProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable TermProjectGroup8.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\vivia\CLionProjects\COMP2510TermProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable TermProjectGroup8.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\TermProjectGroup8.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -122,6 +122,6 @@ CMakeFiles/TermProjectGroup8.dir/clean:
 .PHONY : CMakeFiles/TermProjectGroup8.dir/clean
 
 CMakeFiles/TermProjectGroup8.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\17788\CLionProjects\untitled\CProject C:\Users\17788\CLionProjects\untitled\CProject C:\Users\17788\CLionProjects\untitled\CProject\cmake-build-debug C:\Users\17788\CLionProjects\untitled\CProject\cmake-build-debug C:\Users\17788\CLionProjects\untitled\CProject\cmake-build-debug\CMakeFiles\TermProjectGroup8.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\vivia\CLionProjects\COMP2510TermProject C:\Users\vivia\CLionProjects\COMP2510TermProject C:\Users\vivia\CLionProjects\COMP2510TermProject\cmake-build-debug C:\Users\vivia\CLionProjects\COMP2510TermProject\cmake-build-debug C:\Users\vivia\CLionProjects\COMP2510TermProject\cmake-build-debug\CMakeFiles\TermProjectGroup8.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/TermProjectGroup8.dir/depend
 
