@@ -18,7 +18,7 @@ void scytaleDecrypt(char *message, int key);
 void atbashCipher(char *text);
 void rot13Cipher(char *text);
 char *textToBinary(const char *text);
-char* generate_cipher_alphabet(const char* keyword);
+char* generateCipherAlphabet(const char* keyword);
 
 char* encrypt(const char* plaintext, const char* keyword);
 char* decrypt(const char* ciphertext, const char* keyword);

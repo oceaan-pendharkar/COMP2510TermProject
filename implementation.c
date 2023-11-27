@@ -165,7 +165,7 @@ char * getBinaryString (char * stringToEncode) {
 }
 
 //9. Keyword Cipher
-char* generate_cipher_alphabet(const char* keyword) {
+char* generateCipherAlphabet(const char* keyword) {
     char* cipher_alphabet = (char*)malloc(ALPHABET_SIZE + 1);
     int keyword_length = strlen(keyword);
     int i, j;
@@ -183,7 +183,7 @@ char* generate_cipher_alphabet(const char* keyword) {
 }
 
 char* encrypt(const char* plaintext, const char* keyword) {
-    char* cipher_alphabet = generate_cipher_alphabet(keyword);
+    char* cipher_alphabet = generateCipherAlphabet(keyword);
     int text_length = strlen(plaintext);
     char* ciphertext = (char*)malloc(text_length + 1);
     for (int i = 0; i < text_length; ++i) {
@@ -200,7 +200,7 @@ char* encrypt(const char* plaintext, const char* keyword) {
 }
 
 char* decrypt(const char* ciphertext, const char* keyword) {
-    char* cipher_alphabet = generate_cipher_alphabet(keyword);
+    char* cipher_alphabet = generateCipherAlphabet(keyword);
     int text_length = strlen(ciphertext);
     char* plaintext = (char*)malloc(text_length + 1);
 

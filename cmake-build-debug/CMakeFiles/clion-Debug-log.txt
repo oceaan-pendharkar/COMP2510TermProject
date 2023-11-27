@@ -1,10 +1,19 @@
-"C:\Program Files\JetBrains\CLion 2023.2.1\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\vivia\CLionProjects\COMP2510TermProject -B C:\Users\vivia\CLionProjects\COMP2510TermProject\cmake-build-debug
--- The C compiler identification is GNU 13.1.0
+"/Applications/CLion 2023.3 EAP.app/Contents/bin/cmake/mac/x64/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/yueyu/Desktop/COMP2510TermProject -B /Users/yueyu/Desktop/COMP2510TermProject/cmake-build-debug
+CMake Deprecation Warning:
+  Support for "Extra Generators" like
+
+    CodeBlocks
+
+  is deprecated and will be removed from a future version of CMake.  IDEs may
+  use the cmake-file-api(7) to view CMake-generated project build trees.
+
+
+-- The C compiler identification is AppleClang 15.0.0.15000040
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/Program Files/JetBrains/CLion 2023.2.1/bin/mingw/bin/gcc.exe - skipped
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
 -- Detecting C compile features
 -- Detecting C compile features - done
--- Configuring done (2.1s)
+-- Configuring done (2.8s)
 -- Generating done (0.0s)
--- Build files have been written to: C:/Users/vivia/CLionProjects/COMP2510TermProject/cmake-build-debug
+-- Build files have been written to: /Users/yueyu/Desktop/COMP2510TermProject/cmake-build-debug
