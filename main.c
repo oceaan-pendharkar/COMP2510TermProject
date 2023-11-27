@@ -61,16 +61,24 @@ int main() {
 
       // Testing Keyword Cipher
 //    const char* keyword = "KEYWORD";
-//    const char* plaintext = "HELLO WORLD";
+//    const char* plaintext = "HELLO";
 //
-//    char* encrypted_text = encrypt(plaintext, keyword);
-//    char* decrypted_text = decrypt(encrypted_text, keyword);
+//    // Generate cipher alphabet
+//    char* cipher_alphabet = generateCipherAlphabet(keyword);
+//    printf("Cipher Alphabet: %s\n", cipher_alphabet);
 //
+//    // Encrypt
+//    char* ciphertext = encrypt(plaintext, cipher_alphabet);
 //    printf("Plaintext: %s\n", plaintext);
-//    printf("Encrypted text: %s\n", encrypted_text);
-//    printf("Decrypted text: %s\n", decrypted_text);
+//    printf("Ciphertext: %s\n", ciphertext);
 //
-//    free(encrypted_text);
+//    // Decrypt
+//    char* decrypted_text = decrypt(ciphertext, cipher_alphabet);
+//    printf("Decrypted Text: %s\n", decrypted_text);
+//
+//    // Free allocated memory
+//    free(cipher_alphabet);
+//    free(ciphertext);
 //    free(decrypted_text);
 
 
