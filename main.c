@@ -142,21 +142,20 @@ int main() {
 //    printf("Decoded Morse: ");
 //    morseToText(inputCode);
 ////Fractionated Morse
-//    const char *inputText = "Hello World";
-//    char inputCode[] = "agtcdhotqodtcjt";
-//
-//    printf("Original Text: %s\n", inputText);
-//
-//    printf("Morse Code: ");
-//    fractionatedMorse(inputText);
-//
-//    printf("\nDeciphered Text: ");
-//    unfractionatedMorse(inputCode);
+    const char *inputText = "Hello World";
+    char inputCode[] = "agtcdhotqodtcjt";
+
+    printf("Original Text: %s\n", inputText);
+
+    printf("Morse Code: ");
+    fractionatedMorse(inputText);
+
+    unfractionatedMorse(inputCode);
+
+//// Scytale
 
 //    char message[100];
 //    int key;
-//
-//
 //    printf("Enter the message to encrypt: ");
 //    fgets(message, sizeof(message), stdin);
 //    message[strcspn(message, "\n")] = '\0';
@@ -301,6 +300,6 @@ int main() {
 //    }
 //
 //    fclose(file);
-//    return 0;
-//
-//}
+    return 0;
+
+}

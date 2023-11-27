@@ -40,4 +40,4 @@ void textToMorse(const char *text);
 void morseToText(const char *code);
 void fractionatedMorse(const char *text);
 void unfractionatedMorse(const char *code);
->>>>>>> origin/main
+//>>>>>>> origin/main
