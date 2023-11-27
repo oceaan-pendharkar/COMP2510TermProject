@@ -156,7 +156,7 @@ int main() {
 //    printf("Enter the key: ");
 //    scanf("%d", &key);
 //
-//    skytaleEncrypt(message, key);
+//    scytaleEncrypt(message, key);
 
 //    char message[100];
 //    int key;
@@ -168,6 +168,6 @@ int main() {
 //    printf("Enter the key: ");
 //    scanf("%d", &key);
 //
-//    skytaleDecrypt(message, key);
+//    scytaleDecrypt(message, key);
 
 }

@@ -11,8 +11,8 @@ char * simpleSubstitutionEncode (char * stringToEncode);
 void railRoadCipherEncryption(char* plainText, int rails);
 void railRoadCipherDecryption(char* encoded_message, int rails);
 void simpleXORCipher(char* message, const char* key);
-void skytaleEncrypt(char *message, int key);
-void skytaleDecrypt(char *message, int key);
+void scytaleEncrypt(char *message, int key);
+void scytaleDecrypt(char *message, int key);
 
 // Michael
 void atbashCipher(char *text);

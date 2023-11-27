@@ -542,9 +542,8 @@ void railRoadCipherDecryption(char* encoded_message, int rails) {
     int rail = 0;
     int direction = 1;
 
-    // Fill the fence with placeholders
     for (int i = 0; i < len; i++) {
-        fence[i][rail] = 1;  // Using 1 as a placeholder for filled cells
+        fence[i][rail] = 1;
         rail += direction;
 
         if (rail == 0 || rail == rails - 1) {
@@ -552,7 +551,6 @@ void railRoadCipherDecryption(char* encoded_message, int rails) {
         }
     }
 
-    // Fill the fence with the encoded message
     int index = 0;
     for (int i = 0; i < rails; i++) {
         for (int j = 0; j < len; j++) {
@@ -583,6 +581,64 @@ void simpleXORCipher(char* message, const char* key) {
         message[i] = message[i] ^ key[i % keyLen];
     }
 }
+
+
+void scytaleEncrypt(char *message, int key) {
+    int messageLength = strlen(message);
+    int numRows = (messageLength + key - 1) / key;
+
+    char matrix[numRows][key];
+
+    int index = 0;
+    for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j < key; j++) {
+            if (index < messageLength) {
+                matrix[i][j] = message[index++];
+            } else {
+                matrix[i][j] = ' ';
+            }
+        }
+    }
+
+    printf("Encrypted Message: ");
+    for (int i = 0; i < key; i++) {
+        for (int j = 0; j < numRows; j++) {
+            printf("%c", matrix[j][i]);
+        }
+    }
+    printf("\n");
+}
+
+void scytaleDecrypt(char *message, int key) {
+    int messageLength = strlen(message);
+    int numRows = (messageLength + key - 1) / key;
+
+    char matrix[numRows][key];
+
+    for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j < key; j++) {
+            matrix[i][j] = ' ';
+        }
+    }
+
+    int index = 0;
+    for (int i = 0; i < key; i++) {
+        for (int j = 0; j < numRows; j++) {
+            matrix[j][i] = message[index++];
+        }
+    }
+
+    printf("Decrypted Message: ");
+    for (int i = 0; i < numRows; i++) {
+        for (int j = 0; j < key; j++) {
+            printf("%c", matrix[i][j]);
+        }
+    }
+    printf("\n");
+}
+
+
+
 
 // Charlie's ---------------------------------------------------------------
 
@@ -782,62 +838,4 @@ void unfractionatedMorse(const char *code) {
 
     printf("%s", morseCodeText);
 }
-
-// Skytale
-
-void skytaleEncrypt(char *message, int key) {
-    int messageLength = strlen(message);
-    int numRows = (messageLength + key - 1) / key;
-
-    char matrix[numRows][key];
-
-    int index = 0;
-    for (int i = 0; i < numRows; i++) {
-        for (int j = 0; j < key; j++) {
-            if (index < messageLength) {
-                matrix[i][j] = message[index++];
-            } else {
-                matrix[i][j] = ' ';
-            }
-        }
-    }
-
-    printf("Encrypted Message: ");
-    for (int i = 0; i < key; i++) {
-        for (int j = 0; j < numRows; j++) {
-            printf("%c", matrix[j][i]);
-        }
-    }
-    printf("\n");
-}
-
-void skytaleDecrypt(char *message, int key) {
-    int messageLength = strlen(message);
-    int numRows = (messageLength + key - 1) / key;
-
-    char matrix[numRows][key];
-
-    for (int i = 0; i < numRows; i++) {
-        for (int j = 0; j < key; j++) {
-            matrix[i][j] = ' ';
-        }
-    }
-
-    int index = 0;
-    for (int i = 0; i < key; i++) {
-        for (int j = 0; j < numRows; j++) {
-            matrix[j][i] = message[index++];
-        }
-    }
-
-    // Print the decrypted message
-    printf("Decrypted Message: ");
-    for (int i = 0; i < numRows; i++) {
-        for (int j = 0; j < key; j++) {
-            printf("%c", matrix[i][j]);
-        }
-    }
-    printf("\n");
-}
-
 
