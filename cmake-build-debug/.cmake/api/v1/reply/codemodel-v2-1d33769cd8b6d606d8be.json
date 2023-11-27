@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "TermProjectGroup8::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-TermProjectGroup8-Debug-0cfd4fa28c77c9cfb0f5.json",
+					"jsonFile" : "target-TermProjectGroup8-Debug-309dc112d57ff72a4f3b.json",
 					"name" : "TermProjectGroup8",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/yueyu/Desktop/COMP2510TermProject/cmake-build-debug",
-		"source" : "/Users/yueyu/Desktop/COMP2510TermProject"
+		"build" : "/Users/oceaanpendharkar/CLionProjects/COMP2510TermProject/cmake-build-debug",
+		"source" : "/Users/oceaanpendharkar/CLionProjects/COMP2510TermProject"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 6
+		"minor" : 5
 	}
 }
