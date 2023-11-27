@@ -7,6 +7,18 @@ void complexSubstitutionDecode (char * stringToDecode, char * key);
 char * complexSubstitutionEncode (char * stringToEncode);
 char * simpleSubstitutionDecode(char * stringToDecode);
 char * simpleSubstitutionEncode (char * stringToEncode);
+
+
+// Kate 3 encoding and 2 decoding functions
+void encodePlayfair(char str[], char key[]);
+void CeasarDecode(char message[], int key);
+void ceasarEncrypt(char message[], int key);
+int BookCipherEncode(FILE *file, char targetChar, int *letterPositions);
+void resetFilePosition(FILE *file);
+int bookCipherDecode(FILE *file, int targetPosition, char *decodedLetter);
+
+
+
 // Viv's
 void railRoadCipherEncryption(char* plainText, int rails);
 void railRoadCipherDecryption(char* encoded_message, int rails);
@@ -28,3 +40,4 @@ void textToMorse(const char *text);
 void morseToText(const char *code);
 void fractionatedMorse(const char *text);
 void unfractionatedMorse(const char *code);
+>>>>>>> origin/main

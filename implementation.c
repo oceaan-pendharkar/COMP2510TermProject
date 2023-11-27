@@ -839,3 +839,242 @@ void unfractionatedMorse(const char *code) {
     printf("%s", morseCodeText);
 }
 
+//PLayfair cipher
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define SIZE 30
+
+void toLowerCase(char plain[], int ps)
+{
+    int i = 0;
+    for (i = 0; i < ps; i++) {
+        if (plain[i] > 64 && plain[i] < 91)
+            plain[i] += 32;
+    }
+}
+
+int removeSpaces(char* plainText, int ps)
+{
+    int i = 0;
+    int count = 0;
+
+    for (i = 0; i < ps; i++)
+        if (plainText[i] != ' ')
+            plainText[count++] = plainText[i];
+    plainText[count] = '\0';
+    return count;
+}
+
+void generateKeyTable(char key[], int ks, char keyT[5][5])
+{
+    int i, j, k = 0;
+    int flag = 0,
+            *hashDictionary;
+
+    hashDictionary = (int*)calloc(26, sizeof(int));
+    for (i = 0; i < ks; i++) {
+        if (key[i] != 'j')
+            hashDictionary[key[i] - 97] = 2;
+    }
+    hashDictionary['j' - 97] = 1;
+    i = 0;
+    j = 0;
+
+    for (k = 0; k < ks; k++) {
+        if (hashDictionary[key[k] - 97] == 2) {
+            hashDictionary[key[k] - 97] -= 1;
+            keyT[i][j] = key[k];
+            j++;
+            if (j == 5) {
+                i++;
+                j = 0;
+            }
+        }
+    }
+
+    for (k = 0; k < 26; k++) {
+        if (hashDictionary[k] == 0) {
+            keyT[i][j] = (char)(k + 97);
+            j++;
+            if (j == 5) {
+                i++;
+                j = 0;
+            }
+        }
+    }
+}
+
+void search(char keyT[5][5], char characterA, char characterB, int arr[])
+{
+    int i, j = 0;
+
+    if (characterA == 'j')
+        characterA = 'i';
+    else if (characterB == 'j')
+        characterB = 'i';
+    for (i = 0; i < 5; i++) {
+
+        for (j = 0; j < 5; j++) {
+            if (keyT[i][j] == characterA) {
+                arr[0] = i;
+                arr[1] = j;
+            }
+            else if (keyT[i][j] == characterB) {
+                arr[2] = i;
+                arr[3] = j;
+            }
+        }
+    }
+}
+
+int mod5(int a) { return (a % 5); }
+
+int prepare(char str[], int ptrs)
+{
+    if (ptrs % 2 != 0) {
+        str[ptrs++] = 'z';
+        str[ptrs] = '\0';
+    }
+    return ptrs;
+}
+
+void playfairEncrypt(char str[], char keyT[5][5], int ps)
+{
+    int i = 0;
+    int a[4];
+    for (i = 0; i < ps; i += 2) {
+        search(keyT, str[i], str[i + 1], a);
+
+        if (a[0] == a[2]) {
+            str[i] = keyT[a[0]][mod5(a[1] + 1)];
+            str[i + 1] = keyT[a[0]][mod5(a[3] + 1)];
+        }
+        else if (a[1] == a[3]) {
+            str[i] = keyT[mod5(a[0] + 1)][a[1]];
+            str[i + 1] = keyT[mod5(a[2] + 1)][a[1]];
+        }
+        else {
+            str[i] = keyT[a[0]][a[3]];
+            str[i + 1] = keyT[a[2]][a[1]];
+        }
+    }
+}
+
+void encodePlayfair(char str[], char key[])
+{
+    char ps;
+    char ks;
+    char keyT[5][5];
+
+    ks = strlen(key);
+    ks = removeSpaces(key, ks);
+    toLowerCase(key, ks);
+
+    // Plaintext
+    ps = strlen(str);
+    toLowerCase(str, ps);
+    ps = removeSpaces(str, ps);
+
+    ps = prepare(str, ps);
+
+    generateKeyTable(key, ks, keyT);
+
+    playfairEncrypt(str, keyT, ps);
+}
+
+//// CEASAR DECODE
+
+#include <stdio.h>
+//#include <ctype.h>
+
+//void CeasarDecode(char message[], int key) {
+//    for (int i = 0; message[i] != '\0'; ++i) {
+//        if (isalpha(message[i])) {
+//            char base = isupper(message[i]) ? 'A' : 'a';
+//            message[i] = (message[i] - base - key + 26) % 26 + base;
+//        }
+//    }
+//}
+
+///CEASAR ENCODE
+//
+//#include <stdio.h>
+//#include <ctype.h>
+//
+//void ceasarEncrypt(char message[], int key) {
+//    for (int i = 0; message[i] != '\0'; ++i) {
+//        if (isalpha(message[i])) {
+//            char base = isupper(message[i]) ? 'A' : 'a';
+//            message[i] = (message[i] - base + key) % 26 + base;
+//        }
+//    }
+//}
+
+//// BOOK CIPHER ENCODE
+//
+//#include <stdio.h>
+//#include <string.h>
+//#include <ctype.h>
+//#define MAX_BOOK_TITLE 50
+//#define ALPHABET_SIZE 26
+//#define MAX_WORD_LENGTH 50
+//
+//int BookCipherEncode(FILE *file, char targetChar, int *letterPositions) {
+//    int position = 0;
+//    char word[MAX_WORD_LENGTH];
+//
+//    while (fscanf(file, "%s", word) == 1) {
+//        position++;
+//
+//        char firstChar = toupper(word[0]);
+//
+//        if (firstChar == targetChar && letterPositions[firstChar - 'A'] < position) {
+//            return position;
+//        }
+//    }
+//
+//    return -1;
+//}
+//
+//void resetFilePosition(FILE *file) {
+//    fseek(file, 0, SEEK_SET);
+
+
+//// BOOK CIPHER DECODE
+
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#include <ctype.h>
+//#define MAX_BOOK_TITLE 50
+//#define ALPHABET_SIZE 26
+//#define MAX_FILE_CONTENT 10000
+//
+//int bookCipherDecode(FILE *file, int targetPosition, char *decodedLetter) {
+//    int position = 0;
+//    char word[MAX_BOOK_TITLE];
+//
+//    while (fscanf(file, "%s", word) == 1) {
+//        position++;
+//
+//        if (position == targetPosition) {
+//            *decodedLetter = word[0];
+//            return 1;
+//        }
+//    }
+//
+//    return 0;
+//}
+//
+//void resetFilePosition(FILE *file) {
+//    fseek(file, 0, SEEK_SET);
+//}
+
+
+
+
+
+
