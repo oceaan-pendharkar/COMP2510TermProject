@@ -258,7 +258,7 @@ int main() {
 //            int positionInBook = BookCipherEncode(file, currentLetter, letterPositions);
 //            printf("%d ", positionInBook);
 //            letterPositions[currentLetter - 'A'] = positionInBook + 1;
-//            resetFilePosition(file);
+//            resetFilePositionEncode(file);
 //        }
 //    }
 //    fclose(file);
@@ -300,6 +300,6 @@ int main() {
 //    }
 //
 //    fclose(file);
-    return 0;
+//    return 0;
 
 }

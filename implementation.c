@@ -1016,90 +1016,92 @@ void encodePlayfair(char str[], char key[])
 //// CEASAR DECODE
 
 #include <stdio.h>
-//#include <ctype.h>
+#include <ctype.h>
 
-//void CeasarDecode(char message[], int key) {
-//    for (int i = 0; message[i] != '\0'; ++i) {
-//        if (isalpha(message[i])) {
-//            char base = isupper(message[i]) ? 'A' : 'a';
-//            message[i] = (message[i] - base - key + 26) % 26 + base;
-//        }
-//    }
-//}
+void CeasarDecode(char message[], int key) {
+    for (int i = 0; message[i] != '\0'; ++i) {
+        if (isalpha(message[i])) {
+            char base = isupper(message[i]) ? 'A' : 'a';
+            message[i] = (message[i] - base - key + 26) % 26 + base;
+        }
+    }
+}
 
-///CEASAR ENCODE
-//
-//#include <stdio.h>
-//#include <ctype.h>
-//
-//void ceasarEncrypt(char message[], int key) {
-//    for (int i = 0; message[i] != '\0'; ++i) {
-//        if (isalpha(message[i])) {
-//            char base = isupper(message[i]) ? 'A' : 'a';
-//            message[i] = (message[i] - base + key) % 26 + base;
-//        }
-//    }
-//}
+////CEASAR ENCODE
 
-//// BOOK CIPHER ENCODE
-//
-//#include <stdio.h>
-//#include <string.h>
-//#include <ctype.h>
-//#define MAX_BOOK_TITLE 50
-//#define ALPHABET_SIZE 26
-//#define MAX_WORD_LENGTH 50
-//
-//int BookCipherEncode(FILE *file, char targetChar, int *letterPositions) {
-//    int position = 0;
-//    char word[MAX_WORD_LENGTH];
-//
-//    while (fscanf(file, "%s", word) == 1) {
-//        position++;
-//
-//        char firstChar = toupper(word[0]);
-//
-//        if (firstChar == targetChar && letterPositions[firstChar - 'A'] < position) {
-//            return position;
-//        }
-//    }
-//
-//    return -1;
-//}
-//
-//void resetFilePosition(FILE *file) {
-//    fseek(file, 0, SEEK_SET);
+#include <stdio.h>
+#include <ctype.h>
+
+void ceasarEncrypt(char message[], int key) {
+    for (int i = 0; message[i] != '\0'; ++i) {
+        if (isalpha(message[i])) {
+            char base = isupper(message[i]) ? 'A' : 'a';
+            message[i] = (message[i] - base + key) % 26 + base;
+        }
+    }
+}
+
+// BOOK CIPHER ENCODE
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define MAX_BOOK_TITLE 50
+#define ALPHABET_SIZE 26
+#define MAX_WORD_LENGTH 50
+
+int BookCipherEncode(FILE *file, char targetChar, int *letterPositions) {
+    int position = 0;
+    char word[MAX_WORD_LENGTH];
+
+    while (fscanf(file, "%s", word) == 1) {
+        position++;
+
+        char firstChar = toupper(word[0]);
+
+        if (firstChar == targetChar && letterPositions[firstChar - 'A'] < position) {
+            return position;
+        }
+    }
+
+    return -1;
+}
+
+void resetFilePositionEncode(FILE *file) {
+    fseek(file, 0, SEEK_SET);
+}
 
 
-//// BOOK CIPHER DECODE
+// BOOK CIPHER DECODE
 
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <string.h>
-//#include <ctype.h>
-//#define MAX_BOOK_TITLE 50
-//#define ALPHABET_SIZE 26
-//#define MAX_FILE_CONTENT 10000
-//
-//int bookCipherDecode(FILE *file, int targetPosition, char *decodedLetter) {
-//    int position = 0;
-//    char word[MAX_BOOK_TITLE];
-//
-//    while (fscanf(file, "%s", word) == 1) {
-//        position++;
-//
-//        if (position == targetPosition) {
-//            *decodedLetter = word[0];
-//            return 1;
-//        }
-//    }
-//
-//    return 0;
-//}
-//
-//void resetFilePosition(FILE *file) {
-//    fseek(file, 0, SEEK_SET);
-//}
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_BOOK_TITLE 50
+#define ALPHABET_SIZE 26
+#define MAX_FILE_CONTENT 10000
+
+    int bookCipherDecode(FILE *file, int targetPosition, char *decodedLetter) {
+        int position = 0;
+        char word[MAX_BOOK_TITLE];
+
+        while (fscanf(file, "%s", word) == 1) {
+            position++;
+
+            if (position == targetPosition) {
+                *decodedLetter = word[0];
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
+    void resetFilePosition(FILE *file) {
+        fseek(file, 0, SEEK_SET);
+    }
 
 
 
