@@ -68,12 +68,12 @@ int main() {
 //    printf("Cipher Alphabet: %s\n", cipher_alphabet);
 //
 //    // Encrypt
-//    char* ciphertext = encrypt(plaintext, cipher_alphabet);
+//    char* ciphertext = cipherAlphabetEncrypt(plaintext, cipher_alphabet);
 //    printf("Plaintext: %s\n", plaintext);
 //    printf("Ciphertext: %s\n", ciphertext);
 //
 //    // Decrypt
-//    char* decrypted_text = decrypt(ciphertext, cipher_alphabet);
+//    char* decrypted_text = cipherAlphabetDecrypt(ciphertext, cipher_alphabet);
 //    printf("Decrypted Text: %s\n", decrypted_text);
 //
 //    // Free allocated memory
@@ -156,7 +156,7 @@ int main() {
 
 //    char message[100];
 //    int key;
-//    printf("Enter the message to encrypt: ");
+//    printf("Enter the message to cipherAlphabetEncrypt: ");
 //    fgets(message, sizeof(message), stdin);
 //    message[strcspn(message, "\n")] = '\0';
 //

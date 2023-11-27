@@ -32,8 +32,8 @@ void rot13Cipher(char *text);
 char *textToBinary(const char *text);
 char* generateCipherAlphabet(const char* keyword);
 
-char* encrypt(const char* plaintext, const char* keyword);
-char* decrypt(const char* ciphertext, const char* keyword);
+char* cipherAlphabetEncrypt(const char* plaintext, const char* keyword);
+char* cipherAlphabetDecrypt(const char* ciphertext, const char* keyword);
 // Charlie's functions
 void vigenereEncrypt(char *message, const char *key, bool encrypt);
 void textToMorse(const char *text);

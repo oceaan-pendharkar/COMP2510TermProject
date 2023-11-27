@@ -182,7 +182,7 @@ char* generateCipherAlphabet(const char* keyword) {
     return cipher_alphabet;
 }
 
-char* encrypt(const char* plaintext, const char* keyword) {
+char* cipherAlphabetEncrypt(const char* plaintext, const char* keyword) {
     char* cipher_alphabet = generateCipherAlphabet(keyword);
     int text_length = strlen(plaintext);
     char* ciphertext = (char*)malloc(text_length + 1);
@@ -199,7 +199,7 @@ char* encrypt(const char* plaintext, const char* keyword) {
     return ciphertext;
 }
 
-char* decrypt(const char* ciphertext, const char* keyword) {
+char* cipherAlphabetDecrypt(const char* ciphertext, const char* keyword) {
     char* cipher_alphabet = generateCipherAlphabet(keyword);
     int text_length = strlen(ciphertext);
     char* plaintext = (char*)malloc(text_length + 1);
@@ -664,7 +664,7 @@ void vigenereEncrypt(char *message, const char *key, bool encrypt) {
             // Get the Vigenere shift for the current position
             int shift = getVigenereShift(key, i - nonAlphaCounter, encrypt);
 
-            // Encrypt or decrypt the uppercase letter and ensure it wraps around the alphabet
+            // Encrypt or cipherAlphabetDecrypt the uppercase letter and ensure it wraps around the alphabet
             if (isupper(message[i])) {
                 message[i] = (message[i] - 'A' + shift) % 26 + 'A';
             } else {
