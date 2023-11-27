@@ -178,7 +178,7 @@ int main() {
 //    scytaleDecrypt(message, key);
 
 // -----------------------------KATE TESTS-----------------------------
-// PLAYFAIR CIPHER
+///// PLAYFAIR CIPHER
 //#define SIZE 30
 //
 //    char messageString[SIZE], encodeKey[SIZE];
@@ -196,19 +196,19 @@ int main() {
 //    return 0;
 //// ceasar decode
 
-//    int codeKey;
-//    char initialMessage[200];
-//
-//    printf("Enter the encrypted message: ");
-//    fgets(initialMessage, sizeof(initialMessage), stdin);
-//
-//    printf("Enter key (must be an integer) ");
-//    scanf("%d", &codeKey);
-//
-//    CeasarDecode(initialMessage, codeKey);
-//    printf("Decoded message: %s\n", initialMessage);
-//
-//    return 0;
+    int codeKey;
+    char initialMessage[200];
+
+    printf("Enter the encrypted message: ");
+    fgets(initialMessage, sizeof(initialMessage), stdin);
+
+    printf("Enter key (must be an integer) ");
+    scanf("%d", &codeKey);
+
+    CeasarDecode(initialMessage, codeKey);
+    printf("Decoded message: %s\n", initialMessage);
+
+    return 0;
 
 //// ceasar decode
 
@@ -226,10 +226,10 @@ int main() {
 //    printf("Encoded message: %s\n", inputMessage);
 //
 //    return 0;
-//}
+
 
 //// BOOK CIPHER ENCODE
-
+//
 //#include <stdio.h>
 //#include <string.h>
 //#include <ctype.h>
@@ -258,7 +258,7 @@ int main() {
 //            int positionInBook = BookCipherEncode(file, currentLetter, letterPositions);
 //            printf("%d ", positionInBook);
 //            letterPositions[currentLetter - 'A'] = positionInBook + 1;
-//            resetFilePositionEncode(file);
+//            resetFilePosition(file);
 //        }
 //    }
 //    fclose(file);
