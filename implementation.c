@@ -165,7 +165,7 @@ char * getBinaryString (char * stringToEncode) {
 }
 
 //9. Keyword Cipher
-char* generate_cipher_alphabet(const char* keyword) {
+char* generateCipherAlphabet(const char* keyword) {
     char* cipher_alphabet = (char*)malloc(ALPHABET_SIZE + 1);
     int keyword_length = strlen(keyword);
     int i, j;
@@ -182,8 +182,8 @@ char* generate_cipher_alphabet(const char* keyword) {
     return cipher_alphabet;
 }
 
-char* encrypt(const char* plaintext, const char* keyword) {
-    char* cipher_alphabet = generate_cipher_alphabet(keyword);
+char* cipherAlphabetEncrypt(const char* plaintext, const char* keyword) {
+    char* cipher_alphabet = generateCipherAlphabet(keyword);
     int text_length = strlen(plaintext);
     char* ciphertext = (char*)malloc(text_length + 1);
     for (int i = 0; i < text_length; ++i) {
@@ -199,8 +199,8 @@ char* encrypt(const char* plaintext, const char* keyword) {
     return ciphertext;
 }
 
-char* decrypt(const char* ciphertext, const char* keyword) {
-    char* cipher_alphabet = generate_cipher_alphabet(keyword);
+char* cipherAlphabetDecrypt(const char* ciphertext, const char* keyword) {
+    char* cipher_alphabet = generateCipherAlphabet(keyword);
     int text_length = strlen(ciphertext);
     char* plaintext = (char*)malloc(text_length + 1);
 
@@ -643,48 +643,60 @@ void scytaleDecrypt(char *message, int key) {
 // Charlie's ---------------------------------------------------------------
 
 //Vigenere Cipher
-int getShift(const char *key, int position, bool encrypt) {
+int getVigenereShift(const char *key, int position, bool encrypt) {
     int keyLength = strlen(key);
 
     if (encrypt) {
+        // For encryption, calculate the shift for the current position and convert to lowercase
         return tolower(key[position % keyLength]) - 'a';
     } else {
+        // For decryption, calculate the shift for the current position and adjust to ensure positive values
         return -(tolower(key[position % keyLength]) - 'a') + 26;
     }
 }
 
 void vigenereEncrypt(char *message, const char *key, bool encrypt) {
 
+    int nonAlphaCounter = 0;
+    // Iterate through each character in the message
     for (int i = 0; i < strlen(message); i++) {
         if (isalpha(message[i])) {
-            int shift = getShift(key, i, encrypt);
+            // Get the Vigenere shift for the current position
+            int shift = getVigenereShift(key, i - nonAlphaCounter, encrypt);
 
+            // Encrypt or cipherAlphabetDecrypt the uppercase letter and ensure it wraps around the alphabet
             if (isupper(message[i])) {
                 message[i] = (message[i] - 'A' + shift) % 26 + 'A';
             } else {
                 message[i] = (message[i] - 'a' + shift) % 26 + 'a';
             }
+        } else {
+            nonAlphaCounter++;
         }
     }
 }
 
 //Morse Code
-void textToMorse(const char *text) {
-    const char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+char* getMorseChar(int morseIndex) {
+    // Array of Morse code representations for letters (A-Z) and digits (0-9)
+    char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
                                 "....", "..", ".---", "-.-", ".-..", "--", "-.",
                                 "---", ".--.", "--.-", ".-.", "...", "-",
                                 "..-", "...-", ".--", "-..-", "-.--", "--..",
-                                ".----", "..---", "...--", "....-", ".....",
-                                "-....","--...", "---..", "----.", "-----" };
+                                "-----", ".----", "..---", "...--", "....-", ".....",
+                                "-....","--...", "---..", "----."};
+    return morseCodes[morseIndex];
+}
 
 
+void textToMorse(const char *text) {
     for (int i = 0; text[i] != '\0'; i++) {
         char currentChar = tolower(text[i]);
 
         if (isalpha(currentChar)) {
-            printf("%s ", morseCodes[currentChar - 'a']);
+            printf("%s ", getMorseChar(currentChar - 'a'));
         } else if (isdigit(currentChar)) {
-            printf("%s ", morseCodes[currentChar - '0' + 25]);
+            printf("%s ", getMorseChar(currentChar - '0' + 25));
         } else {
             printf("%c ", currentChar);
         }
@@ -693,21 +705,18 @@ void textToMorse(const char *text) {
 }
 
 void morseToText(const char *code) {
-    const char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
-                                "....", "..", ".---", "-.-", ".-..", "--", "-.",
-                                "---", ".--.", "--.-", ".-.", "...", "-",
-                                "..-", "...-", ".--", "-..-", "-.--", "--..",
-                                "-----", ".----", "..---", "...--", "....-", ".....",
-                                "-....","--...", "---..", "----." };
-
+    // Loop through the input Morse code
     for (int i = 0; code[i] != '\0'; i++) {
         if (code[i] == ' ') {
             printf(" ");
             continue;
         }
 
+        // Array to store the current Morse code letter
         char currentCodeLetter[6];
         int j = 0;
+
+        // Extract Morse code letter until a space or end of string is encountered
         while (code[i] != ' ' && code[i] != '\0') {
             currentCodeLetter[j++] = code[i++];
         }
@@ -716,18 +725,21 @@ void morseToText(const char *code) {
             i--;
         }
 
+        // Search for the current Morse code letter in the Morse code array
         int currentMorseIndex = -1;
-        for (int k = 0; k < sizeof(morseCodes) / sizeof(morseCodes[0]); k++) {
-            if (strcmp(currentCodeLetter, morseCodes[k]) == 0) {
+        for (int k = 0; k < 36; k++) {
+            if (strcmp(currentCodeLetter, getMorseChar(k)) == 0) {
                 currentMorseIndex = k;
             }
         }
 
+        // Check if the Morse code letter was not found
         if (currentMorseIndex == -1) {
-            printf("%c", code[i-1]);
+            printf("%c", code[i-1]);// Print the character as is
             continue;
         }
 
+        // Print the corresponding letter or digit for the Morse code
         if (currentMorseIndex < 26) {
             printf("%c", currentMorseIndex + 'a');
         } else {
@@ -737,28 +749,40 @@ void morseToText(const char *code) {
     }
     printf("\n");
 }
+
 //Fractionated Morse Code
-void fractionatedMorse(const char *text) {
-    const char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+
+char* getFractionatedMorseChar(int morseIndex, bool fractionated) {
+    char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
                                 "....", "..", ".---", "-.-", ".-..", "--", "-.",
                                 "---", ".--.", "--.-", ".-.", "...", "-",
                                 "..-", "...-", ".--", "-..-", "-.--", "--.."};
 
-    const char *fractionatedCodes[] = {"...", "..-", "..|", ".-.", ".--", ".-|", ".|.",
-                                       ".|-", ".||", "-..", "-.-", "-.|", "--.", "---",
-                                       "--|", "-|.", "-|-", "-||", "|..", "|.-",
-                                       "|.|", "|-.", "|--", "|-|", "||.", "||-"};
+    char *fractionatedCodes[] = {"...", "..-", "..|", ".-.", ".--", ".-|", ".|.",
+                                 ".|-", ".||", "-..", "-.-", "-.|", "--.", "---",
+                                 "--|", "-|.", "-|-", "-||", "|..", "|.-",
+                                 "|.|", "|-.", "|--", "|-|", "||.", "||-"};
 
+    if (fractionated) {
+        return fractionatedCodes[morseIndex];
+    } else {
+        return morseCodes[morseIndex];
+    }
+}
 
+void fractionatedMorse(const char *text) {
+    // Initialize arrays to store Morse code and fractionated text
     char morseText[500] = "";
     char fractionatedText[100] = "";
 
+    // Loop through each character in the input text
     for (int i = 0; text[i] != '\0'; i++) {
         char currentChar = tolower(text[i]);
 
         if (isalpha(currentChar)) {
-            strcat(morseText, morseCodes[currentChar - 'a']);
-            strcat(morseText, "|");
+            // If the character is an alphabet letter, append its Morse code to morseText
+            strcat(morseText, getFractionatedMorseChar(currentChar - 'a', false));
+            strcat(morseText, "|"); // Use "|" as a separator between Morse code characters
         } else if (isspace(currentChar)) {
             strcat(morseText, "|");
         }
@@ -766,6 +790,7 @@ void fractionatedMorse(const char *text) {
     strcat(morseText, "\0");
     printf("\n%s\n", morseText);
 
+    // Adjust the Morse code length for encryption adding characters to make it divisible by 3
     if (strlen(morseText) % 3 == 2) {
         strcat(morseText, ".");
     } else if (strlen(morseText) % 3 == 1) {
@@ -774,46 +799,47 @@ void fractionatedMorse(const char *text) {
 
 
     int fractionatedIndex = 0;
+    // Loop through morseText with a step size of 3 to extract Morse code trigrams
     for (int i = 0; i < strlen(morseText); i += 3) {
         char fractionatedCharacter[4];
         for (int k = 0; k < 3; k++) {
             fractionatedCharacter[k] = morseText[i + k];
         }
         fractionatedCharacter[3] = '\0';
-        for (int j = 0; j < sizeof(fractionatedCodes) / sizeof(fractionatedCodes[0]); j++) {
-            if (strcmp(fractionatedCharacter, fractionatedCodes[j]) == 0) {
+
+        // Match the Morse code triplet to its corresponding alphabet letter
+        for (int j = 0; j < 26; j++) {
+            if (strcmp(fractionatedCharacter, getFractionatedMorseChar(j, true)) == 0) {
                 fractionatedText[fractionatedIndex] = 'a' + j;
                 fractionatedIndex++;
             }
         }
     }
 
-    printf("%s", fractionatedText);
+    printf("Fractionated Code:\n%s", fractionatedText);
 }
 
 void unfractionatedMorse(const char *code) {
-    const char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
-                                "....", "..", ".---", "-.-", ".-..", "--", "-.",
-                                "---", ".--.", "--.-", ".-.", "...", "-",
-                                "..-", "...-", ".--", "-..-", "-.--", "--.."};
-
-    const char *fractionatedCodes[] = {"...", "..-", "..|", ".-.", ".--", ".-|", ".|.",
-                                       ".|-", ".||", "-..", "-.-", "-.|", "--.", "---",
-                                       "--|", "-|.", "-|-", "-||", "|..", "|.-",
-                                       "|.|", "|-.", "|--", "|-|", "||.", "||-"};
-
-
+    // Initialize arrays to store Morse code and fractionated text
     char morseCodeText[100] = "";
     char fractionatedCodeText[500] = "";
 
+    // Loop through each character in the input code
     for (int i = 0; code[i] != '\0'; i++) {
         int fractionatedMorse = (int) code[i];
-        strcat(fractionatedCodeText, fractionatedCodes[fractionatedMorse - 'a']);
+
+        // Append the Fractionated Morse code character to fractionatedCodeText
+        strcat(fractionatedCodeText, getFractionatedMorseChar(fractionatedMorse - 'a', true));
     }
 
+    printf("\nMorse Code:\n%s", fractionatedCodeText);
+
+    // Loop through fractionatedCodeText
     for (int i = 0; i < strlen(fractionatedCodeText); i++) {
         char currentCodeLetter[5];
         int j = 0;
+
+        // Extract the Fractionated Morse code letter until a "|" or end of string is encountered
         while (fractionatedCodeText[i] != '|' && fractionatedCodeText[i] != '\0') {
             currentCodeLetter[j++] = fractionatedCodeText[i++];
         }
@@ -822,8 +848,10 @@ void unfractionatedMorse(const char *code) {
             i--;
         }
 
-        for (int k = 0; k < sizeof(morseCodes) / sizeof(morseCodes[0]); k++) {
-            if (strcmp(currentCodeLetter, morseCodes[k]) == 0) {
+        // Search for the current Morse code letter in the Morse code array
+        for (int k = 0; k < 26; k++) {
+            if (strcmp(currentCodeLetter, getFractionatedMorseChar(k, false)) == 0) {
+                // Append the deciphered character to morseCodeText
                 char decipheredChar = k + 'a';
                 morseCodeText[strlen(morseCodeText)] = decipheredChar;
                 break;
@@ -836,6 +864,247 @@ void unfractionatedMorse(const char *code) {
         }
     }
 
-    printf("%s", morseCodeText);
+    printf("\nDeciphered Text: \n%s", morseCodeText);
 }
+
+//PLayfair cipher
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define SIZE 30
+
+void toLowerCase(char plain[], int ps)
+{
+    int i = 0;
+    for (i = 0; i < ps; i++) {
+        if (plain[i] > 64 && plain[i] < 91)
+            plain[i] += 32;
+    }
+}
+
+int removeSpaces(char* plainText, int ps)
+{
+    int i = 0;
+    int count = 0;
+
+    for (i = 0; i < ps; i++)
+        if (plainText[i] != ' ')
+            plainText[count++] = plainText[i];
+    plainText[count] = '\0';
+    return count;
+}
+
+void generateKeyTable(char key[], int ks, char keyT[5][5])
+{
+    int i, j, k = 0;
+    int flag = 0,
+            *hashDictionary;
+
+    hashDictionary = (int*)calloc(26, sizeof(int));
+    for (i = 0; i < ks; i++) {
+        if (key[i] != 'j')
+            hashDictionary[key[i] - 97] = 2;
+    }
+    hashDictionary['j' - 97] = 1;
+    i = 0;
+    j = 0;
+
+    for (k = 0; k < ks; k++) {
+        if (hashDictionary[key[k] - 97] == 2) {
+            hashDictionary[key[k] - 97] -= 1;
+            keyT[i][j] = key[k];
+            j++;
+            if (j == 5) {
+                i++;
+                j = 0;
+            }
+        }
+    }
+
+    for (k = 0; k < 26; k++) {
+        if (hashDictionary[k] == 0) {
+            keyT[i][j] = (char)(k + 97);
+            j++;
+            if (j == 5) {
+                i++;
+                j = 0;
+            }
+        }
+    }
+}
+
+void search(char keyT[5][5], char characterA, char characterB, int arr[])
+{
+    int i, j = 0;
+
+    if (characterA == 'j')
+        characterA = 'i';
+    else if (characterB == 'j')
+        characterB = 'i';
+    for (i = 0; i < 5; i++) {
+
+        for (j = 0; j < 5; j++) {
+            if (keyT[i][j] == characterA) {
+                arr[0] = i;
+                arr[1] = j;
+            }
+            else if (keyT[i][j] == characterB) {
+                arr[2] = i;
+                arr[3] = j;
+            }
+        }
+    }
+}
+
+int mod5(int a) { return (a % 5); }
+
+int prepare(char str[], int ptrs)
+{
+    if (ptrs % 2 != 0) {
+        str[ptrs++] = 'z';
+        str[ptrs] = '\0';
+    }
+    return ptrs;
+}
+
+void playfairEncrypt(char str[], char keyT[5][5], int ps)
+{
+    int i = 0;
+    int a[4];
+    for (i = 0; i < ps; i += 2) {
+        search(keyT, str[i], str[i + 1], a);
+
+        if (a[0] == a[2]) {
+            str[i] = keyT[a[0]][mod5(a[1] + 1)];
+            str[i + 1] = keyT[a[0]][mod5(a[3] + 1)];
+        }
+        else if (a[1] == a[3]) {
+            str[i] = keyT[mod5(a[0] + 1)][a[1]];
+            str[i + 1] = keyT[mod5(a[2] + 1)][a[1]];
+        }
+        else {
+            str[i] = keyT[a[0]][a[3]];
+            str[i + 1] = keyT[a[2]][a[1]];
+        }
+    }
+}
+
+void encodePlayfair(char str[], char key[])
+{
+    char ps;
+    char ks;
+    char keyT[5][5];
+
+    ks = strlen(key);
+    ks = removeSpaces(key, ks);
+    toLowerCase(key, ks);
+
+    // Plaintext
+    ps = strlen(str);
+    toLowerCase(str, ps);
+    ps = removeSpaces(str, ps);
+
+    ps = prepare(str, ps);
+
+    generateKeyTable(key, ks, keyT);
+
+    playfairEncrypt(str, keyT, ps);
+}
+
+//// CEASAR DECODE
+
+#include <stdio.h>
+#include <ctype.h>
+
+void CeasarDecode(char message[], int key) {
+    for (int i = 0; message[i] != '\0'; ++i) {
+        if (isalpha(message[i])) {
+            char base = isupper(message[i]) ? 'A' : 'a';
+            message[i] = (message[i] - base - key + 26) % 26 + base;
+        }
+    }
+}
+
+////CEASAR ENCODE
+
+#include <stdio.h>
+#include <ctype.h>
+
+void ceasarEncrypt(char message[], int key) {
+    for (int i = 0; message[i] != '\0'; ++i) {
+        if (isalpha(message[i])) {
+            char base = isupper(message[i]) ? 'A' : 'a';
+            message[i] = (message[i] - base + key) % 26 + base;
+        }
+    }
+}
+
+// BOOK CIPHER ENCODE
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define MAX_BOOK_TITLE 50
+#define ALPHABET_SIZE 26
+#define MAX_WORD_LENGTH 50
+
+int BookCipherEncode(FILE *file, char targetChar, int *letterPositions) {
+    int position = 0;
+    char word[MAX_WORD_LENGTH];
+
+    while (fscanf(file, "%s", word) == 1) {
+        position++;
+
+        char firstChar = toupper(word[0]);
+
+        if (firstChar == targetChar && letterPositions[firstChar - 'A'] < position) {
+            return position;
+        }
+    }
+
+    return -1;
+}
+
+void resetFilePositionEncode(FILE *file) {
+    fseek(file, 0, SEEK_SET);
+}
+
+
+// BOOK CIPHER DECODE
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_BOOK_TITLE 50
+#define ALPHABET_SIZE 26
+#define MAX_FILE_CONTENT 10000
+
+    int bookCipherDecode(FILE *file, int targetPosition, char *decodedLetter) {
+        int position = 0;
+        char word[MAX_BOOK_TITLE];
+
+        while (fscanf(file, "%s", word) == 1) {
+            position++;
+
+            if (position == targetPosition) {
+                *decodedLetter = word[0];
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
+    void resetFilePosition(FILE *file) {
+        fseek(file, 0, SEEK_SET);
+    }
+
+
+
+
+
 

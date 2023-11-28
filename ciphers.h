@@ -7,6 +7,18 @@ void complexSubstitutionDecode (char * stringToDecode, char * key);
 char * complexSubstitutionEncode (char * stringToEncode);
 char * simpleSubstitutionDecode(char * stringToDecode);
 char * simpleSubstitutionEncode (char * stringToEncode);
+
+
+// Kate 3 encoding and 2 decoding functions
+void encodePlayfair(char str[], char key[]);
+void CeasarDecode(char message[], int key);
+void ceasarEncrypt(char message[], int key);
+int BookCipherEncode(FILE *file, char targetChar, int *letterPositions);
+void resetFilePosition(FILE *file);
+int bookCipherDecode(FILE *file, int targetPosition, char *decodedLetter);
+
+
+
 // Viv's
 void railFenceCipherEncryption(char* plainText, int rails);
 void railFenceCipherDecryption(char* encoded_message, int rails);
@@ -18,13 +30,14 @@ void scytaleDecrypt(char *message, int key);
 void atbashCipher(char *text);
 void rot13Cipher(char *text);
 char *textToBinary(const char *text);
-char* generate_cipher_alphabet(const char* keyword);
+char* generateCipherAlphabet(const char* keyword);
 
-char* encrypt(const char* plaintext, const char* keyword);
-char* decrypt(const char* ciphertext, const char* keyword);
+char* cipherAlphabetEncrypt(const char* plaintext, const char* keyword);
+char* cipherAlphabetDecrypt(const char* ciphertext, const char* keyword);
 // Charlie's functions
 void vigenereEncrypt(char *message, const char *key, bool encrypt);
 void textToMorse(const char *text);
 void morseToText(const char *code);
 void fractionatedMorse(const char *text);
 void unfractionatedMorse(const char *code);
+//>>>>>>> origin/main
