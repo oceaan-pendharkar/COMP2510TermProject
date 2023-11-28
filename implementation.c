@@ -168,6 +168,9 @@ char * getBinaryString (char * stringToEncode) {
 char* generateCipherAlphabet(const char* keyword) {
     char* cipher_alphabet = (char*)malloc(ALPHABET_SIZE + 1);
     int keyword_length = strlen(keyword);
+    if (cipher_alphabet == NULL) {
+        fprintf(stderr, "Memory allocation error");
+    }
     int i, j;
     for (i = 0; i < keyword_length; ++i) {
         cipher_alphabet[i] = toupper(keyword[i]);
