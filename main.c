@@ -27,14 +27,14 @@ int main() {
 //    printf("decoded string: %s\n", decodedString);
 //    free(encodedString);
 //    free(decodedString);
-
+//
 //    char text[100];
 //    int rails;
 //    printf("Enter the text:");
 //    fgets(text, sizeof(text), stdin);
 //
 //    text[strcspn(text, "\n")] = '\0';
-//
+
 
     // Test Atbash
 //    char input[100];
@@ -80,20 +80,20 @@ int main() {
 //    free(cipher_alphabet);
 //    free(ciphertext);
 //    free(decrypted_text);
+//RailFence
+//
+//    int rails = 2;
+//    char railFence[50] = "HELLO";
+//    char railFenceDe[50] = "HLOEL";
+//
+//    railFenceCipherEncryption(railFence, rails);
+//
+//    printf("Encrypted Rail Fence Cipher: %s\n", railFence);
+//
+//    railFenceCipherDecryption(railFenceDe, rails);
+//    printf("Decrypted Rail Fence Cipher: %s\n", railFenceDe);
 
-
-//    printf("Enter the number of rails:");
-//    scanf("%d", &rails);
-//
-//    getchar();
-//
-//    railRoadCipherEncryption(text, rails);
-//
-//    printf("Encrypted Rail Fence Cipher: %s\n", text);
-//
-//    railRoadCipherDecryption(text, rails);
-//    printf("Decrypted Rail Fence Cipher: %s\n", text);
-//
+    //SimpleXOR
 //    char plaintext[] = "Hello";
 //    const char key[] = "P";
 //
@@ -154,28 +154,28 @@ int main() {
 
 //// Scytale
 
-//    char message[100];
-//    int key;
-//    printf("Enter the message to cipherAlphabetEncrypt: ");
-//    fgets(message, sizeof(message), stdin);
-//    message[strcspn(message, "\n")] = '\0';
-//
-//    printf("Enter the key: ");
-//    scanf("%d", &key);
-//
-//    scytaleEncrypt(message, key);
+    char scytaleEn[100];
+    int firstKey;
+    printf("Enter the message to Encrypt: ");
+    fgets(scytaleEn, sizeof(scytaleEn), stdin);
+    scytaleEn[strcspn(scytaleEn, "\n")] = '\0';
 
-//    char message[100];
-//    int key;
-//
-//    printf("Enter the encrypted message: ");
-//    fgets(message, sizeof(message), stdin);
-//    message[strcspn(message, "\n")] = '\0';
-//
-//    printf("Enter the key: ");
-//    scanf("%d", &key);
-//
-//    scytaleDecrypt(message, key);
+    printf("Enter the key: ");
+    scanf("%d", &firstKey);
+
+    scytaleEncrypt(scytaleEn, firstKey);
+
+    char scytaleDe[100];
+    int secondKey;
+    getchar();
+    printf("Enter the message to Decrypt: ");
+    fgets(scytaleDe, sizeof(scytaleDe), stdin);
+    scytaleDe[strcspn(scytaleDe, "\n")] = '\0';
+
+    printf("Enter the key: ");
+    scanf("%d", &secondKey);
+
+    scytaleDecrypt(scytaleDe, secondKey);
 
 // -----------------------------KATE TESTS-----------------------------
 ///// PLAYFAIR CIPHER
@@ -196,19 +196,19 @@ int main() {
 //    return 0;
 //// ceasar decode
 
-    int codeKey;
-    char initialMessage[200];
-
-    printf("Enter the encrypted message: ");
-    fgets(initialMessage, sizeof(initialMessage), stdin);
-
-    printf("Enter key (must be an integer) ");
-    scanf("%d", &codeKey);
-
-    CeasarDecode(initialMessage, codeKey);
-    printf("Decoded message: %s\n", initialMessage);
-
-    return 0;
+//    int codeKey;
+//    char initialMessage[200];
+//
+//    printf("Enter the encrypted message: ");
+//    fgets(initialMessage, sizeof(initialMessage), stdin);
+//
+//    printf("Enter key (must be an integer) ");
+//    scanf("%d", &codeKey);
+//
+//    CeasarDecode(initialMessage, codeKey);
+//    printf("Decoded message: %s\n", initialMessage);
+//
+//    return 0;
 
 //// ceasar decode
 
