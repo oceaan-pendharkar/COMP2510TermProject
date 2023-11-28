@@ -48,7 +48,8 @@ char *textToBinary(const char *text) {
     int len = strlen(text);
     char *binaryResult = (char *)malloc((len * 8 + 1) * sizeof(char));
     if (binaryResult == NULL) {
-        fprintf(stderr, "Memory allocation error\n");
+        printf(stderr, "Memory allocation error\n");
+        exit(1);
     }
     int index = 0;
     for (int i = 0; i < len; i++) {
@@ -93,7 +94,8 @@ int * getCombinationsArray(char * string, char * key) {
 int * getIndices(char c, char * string) {
     int* indices = (int*) malloc(10 * sizeof(int));
     if (indices == NULL) {
-        printf("memory not allocated properly in get indices");
+        printf(stderr, "memory not allocated properly in get indices");
+        exit(1);
     }
     int index = 0;
     indices[0] = -1;
@@ -129,7 +131,8 @@ char * convertToBinaryString(int number) {
     int numberToSubtract = number;
     char * binary = (char*) malloc(9);
     if (binary == NULL) {
-        printf("memory not allocated properly in convert to binary string");
+        printf(stderr, "memory not allocated properly in convert to binary string");
+        exit(1);
     }
     binary[0] = '0';
     int index = 1;
@@ -151,7 +154,8 @@ char * convertToBinaryString(int number) {
 char * getBinaryString (char * stringToEncode) {
     char * binary = (char*) malloc((strlen(stringToEncode) * 9) + 1);
     if (binary == NULL) {
-        printf("memory not allocated properly in get binary string");
+        printf(stderr, "memory not allocated properly in get binary string");
+        exit(1);
     }
     int index = 0;
     for (int i = 0; i < strlen(stringToEncode); i++) {
@@ -177,7 +181,8 @@ char * getBinaryString (char * stringToEncode) {
 char* generateCipherAlphabet(const char* keyword) {
     char* cipher_alphabet = (char*)malloc(ALPHABET_SIZE + 1);
     if (cipher_alphabet == NULL) {
-        printf("memory not allocated properly in generate cipher alphabet");
+        printf(stderr, "memory not allocated properly in generate cipher alphabet");
+        exit(1);
     }
     int keyword_length = strlen(keyword);
     int i, j;
@@ -199,7 +204,8 @@ char* cipherAlphabetEncrypt(const char* plaintext, const char* keyword) {
     int text_length = strlen(plaintext);
     char* ciphertext = (char*)malloc(text_length + 1);
     if (ciphertext == NULL) {
-        printf("memory not allocated properly in cipherAlphabetEncrypt");
+        printf(stderr, "memory not allocated properly in cipherAlphabetEncrypt");
+        exit(1);
     }
     for (int i = 0; i < text_length; ++i) {
         if (isalpha(plaintext[i])) {
@@ -219,7 +225,8 @@ char* cipherAlphabetDecrypt(const char* ciphertext, const char* keyword) {
     int text_length = strlen(ciphertext);
     char* plaintext = (char*)malloc(text_length + 1);
     if (plaintext == NULL) {
-        printf("memory not allocated properly in cipher alphabet decrypt");
+        printf(stderr, "memory not allocated properly in cipher alphabet decrypt");
+        exit(1);
     }
 
     for (int i = 0; i < text_length; ++i) {
@@ -268,7 +275,8 @@ char base64Char(const char * binaryString) {
 char * addEqualsSigns(char * encodedString, int numberOfEqualsSigns) {
     char * newString = (char*) malloc(strlen(encodedString) * sizeof(char) + numberOfEqualsSigns);
     if (newString == NULL) {
-        printf("memory not allocated properly in add equals signs");
+        printf(stderr, "memory not allocated properly in add equals signs");
+        exit(1);
     }
     for (int i = 0; i < strlen(encodedString); i++) {
         newString[i] = encodedString[i];
@@ -284,7 +292,8 @@ char * addEqualsSigns(char * encodedString, int numberOfEqualsSigns) {
 char * binaryFromBase64Char(const char base64char) {
     char * binaryString = (char*) malloc(7);
     if (binaryString == NULL) {
-        printf("memory not allocated properly in binary from base 64 char");
+        printf(stderr, "memory not allocated properly in binary from base 64 char");
+        exit(1);
     }
     int indexToConvertToBinary = findIndex(base64char, BASE64KEY);
     int index = 0;
@@ -320,7 +329,8 @@ char getASCIILetterFromEightDigitBinary (const char * binaryString) {
 char * getSixDigitBinaryForDecode(char * stringToDecode) {
     char * binary = (char*) malloc(strlen(stringToDecode) * 6 + 1);
     if (binary == NULL) {
-        printf("memory not allocated properly in get six digit binary for decode");
+        printf(stderr, "memory not allocated properly in get six digit binary for decode");
+        exit(1);
     }
     int binaryIndex = 0;
     for (int i = 0; i < strlen(stringToDecode); i++) {
@@ -342,7 +352,8 @@ char * getSixDigitBinaryForDecode(char * stringToDecode) {
 char * decodeBinaryInGroupsOfEight(char * binary, int length) {
     char * decoded = (char*) malloc(length);
     if (decoded == NULL) {
-        printf("memory not allocated properly in decode binary in groups of 8");
+        printf(stderr, "memory not allocated properly in decode binary in groups of 8");
+        exit(1);
     }
     unsigned long numberOfCharsLeftInBinaryString = strlen(binary);
     int binaryIndex = 0;
@@ -350,7 +361,8 @@ char * decodeBinaryInGroupsOfEight(char * binary, int length) {
     while(binaryIndex < strlen(binary) && numberOfCharsLeftInBinaryString >= 8) {
         char * eightDigitBinaryString = (char*) malloc(9);
         if (eightDigitBinaryString == NULL) {
-            printf("memory not allocated properly in decode binary in groups of 8");
+            printf(stderr, "memory not allocated properly in decode binary in groups of 8");
+            exit(1);
         }
         for (int i = 0; i < 8; i++) {
             eightDigitBinaryString[i] = binary[binaryIndex];
@@ -371,7 +383,8 @@ char * decodeBinaryInGroupsOfEight(char * binary, int length) {
 char * encodeBinaryInGroupsOfSix(char * binaryString, int length, int charsToEncode) {
     char * encoded = (char*) malloc(length * 8);
     if (encoded == NULL) {
-        printf("memory not allocated properly in encode binary in groups of 6");
+        printf(stderr, "memory not allocated properly in encode binary in groups of 6");
+        exit(1);
     }
     int encodedIndex = 0;
     int charsEncoded = 0;
@@ -403,7 +416,8 @@ void printLegend() {
 char * getStringOfPossibleLetters(const int * indices) {
     char * stringOfPossibleLetters = (char *) malloc(3);
     if (stringOfPossibleLetters == NULL) {
-        printf("memory not allocated properly in string of possible letters");
+        printf(stderr, "memory not allocated properly in string of possible letters");
+        exit(1);
     }
     int iterationIndex = 0;
     while(indices[iterationIndex] >= 0) {
@@ -463,7 +477,8 @@ char * simpleSubstitutionDecode(char * stringToDecode) {
     const char * key = "MGFLHCWDZJPXTBEUAYNQSIKVRO";
     char * decoded = (char*) malloc(strlen(stringToDecode));
     if (decoded == NULL) {
-        printf("memory not allocated properly in simple substitution decode");
+        printf(stderr, "memory not allocated properly in simple substitution decode");
+        exit(1);
     }
     for (int i = 0; i < strlen(stringToDecode); i++) {
         if (checkIfLetter(stringToDecode[i])) {
@@ -482,7 +497,8 @@ char * complexSubstitutionEncode (char * stringToEncode) {
     char key[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //placeholder
     char * encoded = (char*) malloc(strlen(stringToEncode) + 1);
     if (encoded == NULL) {
-        printf("memory not allocated properly in simple substitution encode");
+        printf(stderr, "memory not allocated properly in simple substitution encode");
+        exit(1);
     }
     time_t t;
     srand((unsigned) time(&t));

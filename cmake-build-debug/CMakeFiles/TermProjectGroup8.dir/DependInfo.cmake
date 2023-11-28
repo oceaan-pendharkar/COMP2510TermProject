@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/Kate/CLionProjects/COMP2510TermProject3/implementation.c" "CMakeFiles/TermProjectGroup8.dir/implementation.c.obj" "gcc" "CMakeFiles/TermProjectGroup8.dir/implementation.c.obj.d"
-  "C:/Users/Kate/CLionProjects/COMP2510TermProject3/main.c" "CMakeFiles/TermProjectGroup8.dir/main.c.obj" "gcc" "CMakeFiles/TermProjectGroup8.dir/main.c.obj.d"
+  "/Users/yueyu/Desktop/COMP2510TermProject/implementation.c" "CMakeFiles/TermProjectGroup8.dir/implementation.c.o" "gcc" "CMakeFiles/TermProjectGroup8.dir/implementation.c.o.d"
+  "/Users/yueyu/Desktop/COMP2510TermProject/main.c" "CMakeFiles/TermProjectGroup8.dir/main.c.o" "gcc" "CMakeFiles/TermProjectGroup8.dir/main.c.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
