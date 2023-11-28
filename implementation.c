@@ -92,6 +92,9 @@ int * getCombinationsArray(char * string, char * key) {
 //finds the indices of a certain char in a string
 int * getIndices(char c, char * string) {
     int* indices = (int*) malloc(10 * sizeof(int));
+    if (indices == NULL) {
+        printf("memory not allocated properly in get indices");
+    }
     int index = 0;
     indices[0] = -1;
     for (int i = 0; i < strlen(string); i++) {
@@ -125,6 +128,9 @@ int getASCIICode(char c) {
 char * convertToBinaryString(int number) {
     int numberToSubtract = number;
     char * binary = (char*) malloc(9);
+    if (binary == NULL) {
+        printf("memory not allocated properly in convert to binary string");
+    }
     binary[0] = '0';
     int index = 1;
     for (int i = 64; i > 0; i /= 2) {
@@ -144,6 +150,9 @@ char * convertToBinaryString(int number) {
 //Returns a string of binary digits to represent the ascii codes for chars in string
 char * getBinaryString (char * stringToEncode) {
     char * binary = (char*) malloc((strlen(stringToEncode) * 9) + 1);
+    if (binary == NULL) {
+        printf("memory not allocated properly in get binary string");
+    }
     int index = 0;
     for (int i = 0; i < strlen(stringToEncode); i++) {
         char * codeInBinaryForChar = convertToBinaryString(getASCIICode(stringToEncode[i]));
@@ -167,10 +176,10 @@ char * getBinaryString (char * stringToEncode) {
 //9. Keyword Cipher
 char* generateCipherAlphabet(const char* keyword) {
     char* cipher_alphabet = (char*)malloc(ALPHABET_SIZE + 1);
-    int keyword_length = strlen(keyword);
     if (cipher_alphabet == NULL) {
-        fprintf(stderr, "Memory allocation error");
+        printf("memory not allocated properly in generate cipher alphabet");
     }
+    int keyword_length = strlen(keyword);
     int i, j;
     for (i = 0; i < keyword_length; ++i) {
         cipher_alphabet[i] = toupper(keyword[i]);
@@ -189,6 +198,9 @@ char* cipherAlphabetEncrypt(const char* plaintext, const char* keyword) {
     char* cipher_alphabet = generateCipherAlphabet(keyword);
     int text_length = strlen(plaintext);
     char* ciphertext = (char*)malloc(text_length + 1);
+    if (ciphertext == NULL) {
+        printf("memory not allocated properly in cipherAlphabetEncrypt");
+    }
     for (int i = 0; i < text_length; ++i) {
         if (isalpha(plaintext[i])) {
             int index = toupper(plaintext[i]) - 'A';
@@ -206,6 +218,9 @@ char* cipherAlphabetDecrypt(const char* ciphertext, const char* keyword) {
     char* cipher_alphabet = generateCipherAlphabet(keyword);
     int text_length = strlen(ciphertext);
     char* plaintext = (char*)malloc(text_length + 1);
+    if (plaintext == NULL) {
+        printf("memory not allocated properly in cipher alphabet decrypt");
+    }
 
     for (int i = 0; i < text_length; ++i) {
         if (isalpha(ciphertext[i])) {
@@ -252,6 +267,9 @@ char base64Char(const char * binaryString) {
 //Adds the appropriate number of equals signs at the end of a string.
 char * addEqualsSigns(char * encodedString, int numberOfEqualsSigns) {
     char * newString = (char*) malloc(strlen(encodedString) * sizeof(char) + numberOfEqualsSigns);
+    if (newString == NULL) {
+        printf("memory not allocated properly in add equals signs");
+    }
     for (int i = 0; i < strlen(encodedString); i++) {
         newString[i] = encodedString[i];
     }
@@ -265,6 +283,9 @@ char * addEqualsSigns(char * encodedString, int numberOfEqualsSigns) {
 //Converts a base 64 encoded char to a 6-digit binary string
 char * binaryFromBase64Char(const char base64char) {
     char * binaryString = (char*) malloc(7);
+    if (binaryString == NULL) {
+        printf("memory not allocated properly in binary from base 64 char");
+    }
     int indexToConvertToBinary = findIndex(base64char, BASE64KEY);
     int index = 0;
     for (int i = 5; i >= 0; i--) {
@@ -298,6 +319,9 @@ char getASCIILetterFromEightDigitBinary (const char * binaryString) {
 //Converts a string of chars into 6-digit binary for 64 bit decoding
 char * getSixDigitBinaryForDecode(char * stringToDecode) {
     char * binary = (char*) malloc(strlen(stringToDecode) * 6 + 1);
+    if (binary == NULL) {
+        printf("memory not allocated properly in get six digit binary for decode");
+    }
     int binaryIndex = 0;
     for (int i = 0; i < strlen(stringToDecode); i++) {
         if (stringToDecode[i] != '=') {
@@ -317,11 +341,17 @@ char * getSixDigitBinaryForDecode(char * stringToDecode) {
 //returns decoded string in regular chars
 char * decodeBinaryInGroupsOfEight(char * binary, int length) {
     char * decoded = (char*) malloc(length);
+    if (decoded == NULL) {
+        printf("memory not allocated properly in decode binary in groups of 8");
+    }
     unsigned long numberOfCharsLeftInBinaryString = strlen(binary);
     int binaryIndex = 0;
     int decodedIndex = 0;
     while(binaryIndex < strlen(binary) && numberOfCharsLeftInBinaryString >= 8) {
         char * eightDigitBinaryString = (char*) malloc(9);
+        if (eightDigitBinaryString == NULL) {
+            printf("memory not allocated properly in decode binary in groups of 8");
+        }
         for (int i = 0; i < 8; i++) {
             eightDigitBinaryString[i] = binary[binaryIndex];
             binaryIndex++;
@@ -340,6 +370,9 @@ char * decodeBinaryInGroupsOfEight(char * binary, int length) {
 //returns encoded string in base 64 chars
 char * encodeBinaryInGroupsOfSix(char * binaryString, int length, int charsToEncode) {
     char * encoded = (char*) malloc(length * 8);
+    if (encoded == NULL) {
+        printf("memory not allocated properly in encode binary in groups of 6");
+    }
     int encodedIndex = 0;
     int charsEncoded = 0;
     while (*binaryString != '\0' && charsToEncode != charsEncoded) {
@@ -369,6 +402,9 @@ void printLegend() {
 //gets a string of possible letters for a certain char within the alphabet
 char * getStringOfPossibleLetters(const int * indices) {
     char * stringOfPossibleLetters = (char *) malloc(3);
+    if (stringOfPossibleLetters == NULL) {
+        printf("memory not allocated properly in string of possible letters");
+    }
     int iterationIndex = 0;
     while(indices[iterationIndex] >= 0) {
         int indexOfCharInKey = indices[iterationIndex];
@@ -426,6 +462,9 @@ char * simpleSubstitutionEncode (char * stringToEncode) {
 char * simpleSubstitutionDecode(char * stringToDecode) {
     const char * key = "MGFLHCWDZJPXTBEUAYNQSIKVRO";
     char * decoded = (char*) malloc(strlen(stringToDecode));
+    if (decoded == NULL) {
+        printf("memory not allocated properly in simple substitution decode");
+    }
     for (int i = 0; i < strlen(stringToDecode); i++) {
         if (checkIfLetter(stringToDecode[i])) {
             int index = findIndex((char) toupper(stringToDecode[i]), key);
@@ -442,6 +481,9 @@ char * simpleSubstitutionDecode(char * stringToDecode) {
 char * complexSubstitutionEncode (char * stringToEncode) {
     char key[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; //placeholder
     char * encoded = (char*) malloc(strlen(stringToEncode) + 1);
+    if (encoded == NULL) {
+        printf("memory not allocated properly in simple substitution encode");
+    }
     time_t t;
     srand((unsigned) time(&t));
     for (int i = 0; i < strlen(ALPHABET); i++) {
@@ -500,7 +542,7 @@ char * decode64Bit (char * stringToDecode) {
 }
 /////////////////////////Viv
 
-void railFenceCipherEncryption(char* plainText, int rails) {
+void railRoadCipherEncryption(char* plainText, int rails) {
     int len = strlen(plainText);
     char fence[len][rails];
 
@@ -532,7 +574,7 @@ void railFenceCipherEncryption(char* plainText, int rails) {
     }
 }
 
-void railFenceCipherDecryption(char* encoded_message, int rails) {
+void railRoadCipherDecryption(char* encoded_message, int rails) {
     int len = strlen(encoded_message);
     char fence[len][rails];
 
@@ -683,11 +725,11 @@ void vigenereEncrypt(char *message, const char *key, bool encrypt) {
 char* getMorseChar(int morseIndex) {
     // Array of Morse code representations for letters (A-Z) and digits (0-9)
     char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
-                                "....", "..", ".---", "-.-", ".-..", "--", "-.",
-                                "---", ".--.", "--.-", ".-.", "...", "-",
-                                "..-", "...-", ".--", "-..-", "-.--", "--..",
-                                "-----", ".----", "..---", "...--", "....-", ".....",
-                                "-....","--...", "---..", "----."};
+                          "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                          "---", ".--.", "--.-", ".-.", "...", "-",
+                          "..-", "...-", ".--", "-..-", "-.--", "--..",
+                          "-----", ".----", "..---", "...--", "....-", ".....",
+                          "-....","--...", "---..", "----."};
     return morseCodes[morseIndex];
 }
 
@@ -757,9 +799,9 @@ void morseToText(const char *code) {
 
 char* getFractionatedMorseChar(int morseIndex, bool fractionated) {
     char *morseCodes[] = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
-                                "....", "..", ".---", "-.-", ".-..", "--", "-.",
-                                "---", ".--.", "--.-", ".-.", "...", "-",
-                                "..-", "...-", ".--", "-..-", "-.--", "--.."};
+                          "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                          "---", ".--.", "--.-", ".-.", "...", "-",
+                          "..-", "...-", ".--", "-..-", "-.--", "--.."};
 
     char *fractionatedCodes[] = {"...", "..-", "..|", ".-.", ".--", ".-|", ".|.",
                                  ".|-", ".||", "-..", "-.-", "-.|", "--.", "---",
@@ -1019,92 +1061,90 @@ void encodePlayfair(char str[], char key[])
 //// CEASAR DECODE
 
 #include <stdio.h>
-#include <ctype.h>
+//#include <ctype.h>
 
-void CeasarDecode(char message[], int key) {
-    for (int i = 0; message[i] != '\0'; ++i) {
-        if (isalpha(message[i])) {
-            char base = isupper(message[i]) ? 'A' : 'a';
-            message[i] = (message[i] - base - key + 26) % 26 + base;
-        }
-    }
-}
+//void CeasarDecode(char message[], int key) {
+//    for (int i = 0; message[i] != '\0'; ++i) {
+//        if (isalpha(message[i])) {
+//            char base = isupper(message[i]) ? 'A' : 'a';
+//            message[i] = (message[i] - base - key + 26) % 26 + base;
+//        }
+//    }
+//}
 
-////CEASAR ENCODE
+///CEASAR ENCODE
+//
+//#include <stdio.h>
+//#include <ctype.h>
+//
+//void ceasarEncrypt(char message[], int key) {
+//    for (int i = 0; message[i] != '\0'; ++i) {
+//        if (isalpha(message[i])) {
+//            char base = isupper(message[i]) ? 'A' : 'a';
+//            message[i] = (message[i] - base + key) % 26 + base;
+//        }
+//    }
+//}
 
-#include <stdio.h>
-#include <ctype.h>
-
-void ceasarEncrypt(char message[], int key) {
-    for (int i = 0; message[i] != '\0'; ++i) {
-        if (isalpha(message[i])) {
-            char base = isupper(message[i]) ? 'A' : 'a';
-            message[i] = (message[i] - base + key) % 26 + base;
-        }
-    }
-}
-
-// BOOK CIPHER ENCODE
-
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-#define MAX_BOOK_TITLE 50
-#define ALPHABET_SIZE 26
-#define MAX_WORD_LENGTH 50
-
-int BookCipherEncode(FILE *file, char targetChar, int *letterPositions) {
-    int position = 0;
-    char word[MAX_WORD_LENGTH];
-
-    while (fscanf(file, "%s", word) == 1) {
-        position++;
-
-        char firstChar = toupper(word[0]);
-
-        if (firstChar == targetChar && letterPositions[firstChar - 'A'] < position) {
-            return position;
-        }
-    }
-
-    return -1;
-}
-
-void resetFilePositionEncode(FILE *file) {
-    fseek(file, 0, SEEK_SET);
-}
+//// BOOK CIPHER ENCODE
+//
+//#include <stdio.h>
+//#include <string.h>
+//#include <ctype.h>
+//#define MAX_BOOK_TITLE 50
+//#define ALPHABET_SIZE 26
+//#define MAX_WORD_LENGTH 50
+//
+//int BookCipherEncode(FILE *file, char targetChar, int *letterPositions) {
+//    int position = 0;
+//    char word[MAX_WORD_LENGTH];
+//
+//    while (fscanf(file, "%s", word) == 1) {
+//        position++;
+//
+//        char firstChar = toupper(word[0]);
+//
+//        if (firstChar == targetChar && letterPositions[firstChar - 'A'] < position) {
+//            return position;
+//        }
+//    }
+//
+//    return -1;
+//}
+//
+//void resetFilePosition(FILE *file) {
+//    fseek(file, 0, SEEK_SET);
 
 
-// BOOK CIPHER DECODE
+//// BOOK CIPHER DECODE
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-
-#define MAX_BOOK_TITLE 50
-#define ALPHABET_SIZE 26
-#define MAX_FILE_CONTENT 10000
-
-    int bookCipherDecode(FILE *file, int targetPosition, char *decodedLetter) {
-        int position = 0;
-        char word[MAX_BOOK_TITLE];
-
-        while (fscanf(file, "%s", word) == 1) {
-            position++;
-
-            if (position == targetPosition) {
-                *decodedLetter = word[0];
-                return 1;
-            }
-        }
-
-        return 0;
-    }
-
-    void resetFilePosition(FILE *file) {
-        fseek(file, 0, SEEK_SET);
-    }
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#include <ctype.h>
+//#define MAX_BOOK_TITLE 50
+//#define ALPHABET_SIZE 26
+//#define MAX_FILE_CONTENT 10000
+//
+//int bookCipherDecode(FILE *file, int targetPosition, char *decodedLetter) {
+//    int position = 0;
+//    char word[MAX_BOOK_TITLE];
+//
+//    while (fscanf(file, "%s", word) == 1) {
+//        position++;
+//
+//        if (position == targetPosition) {
+//            *decodedLetter = word[0];
+//            return 1;
+//        }
+//    }
+//
+//    return 0;
+//}
+//
+//void resetFilePosition(FILE *file) {
+//    fseek(file, 0, SEEK_SET);
+//}
 
 
 
