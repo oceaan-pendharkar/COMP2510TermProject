@@ -1072,8 +1072,8 @@ void CeasarDecode(char message[], int key) {
     }
 }
 
-///CEASAR ENCODE
-//
+////CEASAR ENCODE
+
 #include <stdio.h>
 #include <ctype.h>
 
@@ -1086,8 +1086,8 @@ void ceasarEncrypt(char message[], int key) {
     }
 }
 
-//// BOOK CIPHER ENCODE
-//
+// BOOK CIPHER ENCODE
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -1112,16 +1112,18 @@ int BookCipherEncode(FILE *file, char targetChar, int *letterPositions) {
     return -1;
 }
 
-void resetFilePosition(FILE *file) {
+void resetFilePositionEncode(FILE *file) {
     fseek(file, 0, SEEK_SET);
+}
 
 
-//// BOOK CIPHER DECODE
+// BOOK CIPHER DECODE
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+
 #define MAX_BOOK_TITLE 50
 #define ALPHABET_SIZE 26
 #define MAX_FILE_CONTENT 10000
@@ -1141,10 +1143,10 @@ int bookCipherDecode(FILE *file, int targetPosition, char *decodedLetter) {
 
     return 0;
 }
-//
-//void resetFilePosition(FILE *file) {
-//    fseek(file, 0, SEEK_SET);
-//}
+
+void resetFilePosition(FILE *file) {
+    fseek(file, 0, SEEK_SET);
+}
 
 
 
