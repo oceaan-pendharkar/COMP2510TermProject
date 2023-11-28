@@ -72,20 +72,27 @@ int main() {
 //
 //    free(encrypted_text);
 //    free(decrypted_text);
-
-
-//    printf("Enter the number of rails:");
-//    scanf("%d", &rails);
+//RailFence
+//    int rails = 3;
+//    char railFenceEncodeTest[10]= "HELLO";
+//    char railFenceDecodeTest[10]= "HOELL";
 //
-//    getchar();
+//   railFenceCipherEncryption(railFenceEncodeTest, rails);
 //
-//    railRoadCipherEncryption(text, rails);
+//    printf("Encrypted Rail Fence Cipher: %s\n", railFenceEncodeTest);
 //
-//    printf("Encrypted Rail Fence Cipher: %s\n", text);
+//    railFenceCipherDecryption(railFenceDecodeTest, rails);
+//    printf("Decrypted Rail Fence Cipher: %s\n", railFenceDecodeTest);
 //
-//    railRoadCipherDecryption(text, rails);
-//    printf("Decrypted Rail Fence Cipher: %s\n", text);
+//Scytale
+//   char scytaleMessage[] = "Hello World";
+//   char scytaleMessages[]= "HlWleoodl r" ;
+//   int key= 3;
 //
+//    scytaleEncrypt(scytaleMessage, key);
+//
+//    scytaleDecrypt(scytaleMessages, key);
+//SimpleXOR
 //    char plaintext[] = "Hello";
 //    const char key[] = "P";
 //
@@ -149,25 +156,5 @@ int main() {
 //    int key;
 //
 //
-//    printf("Enter the message to encrypt: ");
-//    fgets(message, sizeof(message), stdin);
-//    message[strcspn(message, "\n")] = '\0';
-//
-//    printf("Enter the key: ");
-//    scanf("%d", &key);
-//
-//    scytaleEncrypt(message, key);
-
-//    char message[100];
-//    int key;
-//
-//    printf("Enter the encrypted message: ");
-//    fgets(message, sizeof(message), stdin);
-//    message[strcspn(message, "\n")] = '\0';
-//
-//    printf("Enter the key: ");
-//    scanf("%d", &key);
-//
-//    scytaleDecrypt(message, key);
 
 }

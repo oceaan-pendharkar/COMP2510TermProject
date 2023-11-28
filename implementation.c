@@ -497,7 +497,7 @@ char * decode64Bit (char * stringToDecode) {
 }
 /////////////////////////Viv
 
-void railRoadCipherEncryption(char* plainText, int rails) {
+void railFenceCipherEncryption(char* plainText, int rails) {
     int len = strlen(plainText);
     char fence[len][rails];
 
@@ -529,7 +529,7 @@ void railRoadCipherEncryption(char* plainText, int rails) {
     }
 }
 
-void railRoadCipherDecryption(char* encoded_message, int rails) {
+void railFenceCipherDecryption(char* encoded_message, int rails) {
     int len = strlen(encoded_message);
     char fence[len][rails];
 
